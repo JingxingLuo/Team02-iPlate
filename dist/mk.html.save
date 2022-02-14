@@ -1,0 +1,35 @@
+!DOCTYPMyat E html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSC648-01 Team02</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        a { cursor: pointer; }
+        .help-block { font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <div class = "text-center">
+        <h2>HELLO WELCOME TO CSC648-01 TEAM 02UNKNOWN</h2>
+        <h4>Prathiba Ramesh</h4>
+        <h4>Tun-Ni Chiang</h4>
+        <h4>Christopher Ling</h4>
+        <h4>Jingxing Luo</h4>
+        <a href="./mk.html">Myat Kyaw</a>
+        <h4>Aung Myat</h4>
+    </div>
+
+
+    <!-- credits -->
+   <div class="text-center">
+        <p>
+            <a href="https://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example" target="_top">Re>
+        </p>
+        <p>
+            <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+        </p>
+    </div>
+<script type="text/javascript" src="main.js"></script></body>
+</html>
