@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  color: rgb(0, 0, 0, 0.7);
+  font-family: "lato", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body {
+  background-image: url("../applications/images/221138.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.profile-card {
+  position: relative;
+  width: 500px;
+  background-color: rgba(230, 213, 213, 0.7);
+  height: 70vh;
+  text-align: center;
+  border-radius: 5px;
+}
+
+@media (min-height: 850px) {
+  .profile-card {
+    height: 40vh;
+  }
+}
+
+.profile-content {
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  /* border: 3px solid green; */
+  height: 80%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.profile-avatar img {
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  margin-top: 5%;
+  object-fit: cover;
+  object-position: 0 -8px;
+}
+
+.profile-info {
+  padding: 30px;
+}
+
+.profile-info h1 {
+  color: rgb(67, 50, 94);
+}
+
+.profile-info h2,
+p {
+  font-weight: lighter;
+  letter-spacing: 1px;
+  width: 70%;
+  margin: 10px auto;
+}
+
+.profile-info h2 {
+  font-weight: 400;
+}
+
+.profile-contact h3 {
+  margin: 10px;
+}
+
+.profile-contact i {
+  padding: 0 10px;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: 0.4s;
+}
+
+.profile-contact i:hover {
+  color: rgba(255, 255, 255, 1);
+}
