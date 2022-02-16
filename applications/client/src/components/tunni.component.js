@@ -40,7 +40,7 @@ export default class TunniUser extends Component {
                   />
                 </div>
                 <div class="col-lg-8 pt-4 pt-lg-0 content">
-                  <h3>Team Leader</h3>
+                  <h3>Front-End Lead</h3>
                   <p class="fst-italic">
                     This is my second to the last semester at SFSU! Wish our
                     application could help some people who are struggling in
@@ -108,14 +108,19 @@ export default class TunniUser extends Component {
         <footer id="footer">
           <div class="container">
             <div class="social-links">
-              <a href="#" class="facebook">
-                <i class="bx bxl-facebook"></i>
-              </a>
-              <a href="#" class="instagram">
-                <i class="bx bxl-instagram"></i>
+              <a href="mailto:tchiang3@mail.sfsu.edu" class="instagram">
+                <i class="bx bx-envelope"></i>
               </a>
               <a
-                href="https://www.linkedin.com/in/prathiba-r-b19491157/"
+                href="https://github.com/tunni-chiang"
+                target="_blank"
+                class="facebook"
+              >
+                <i class="bx bxl-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tunni-chiang-9171631a3"
+                target="_blank"
                 class="linkedin"
               >
                 <i class="bx bxl-linkedin"></i>

@@ -103,7 +103,7 @@ export default class About extends Component {
                     <i class="bx bx-tachometer"></i>
                   </div>
                   <h4>
-                  <Link to={"/jingxing"} className="nav-link">
+                    <Link to={"/jingxing"} className="nav-link">
                       Jingxing Luo
                     </Link>
                   </h4>
@@ -134,7 +134,10 @@ export default class About extends Component {
                     <i class="bx bx-layer"></i>
                   </div>
                   <h4>
-                    <Link to={"/aung"} className="nav-link"> Aung Myat</Link>
+                    <Link to={"/aung"} className="nav-link">
+                      {" "}
+                      Aung Myat
+                    </Link>
                   </h4>
                   <p>Scrum Master - Click on the name to know more</p>
                 </div>
@@ -163,7 +166,10 @@ export default class About extends Component {
                     <i class="bx bx-slideshow"></i>
                   </div>
                   <h4>
-                    <Link to={"/christopher"} className="nav-link"> Christopher Liang</Link>
+                    <Link to={"/christopher"} className="nav-link">
+                      {" "}
+                      Christopher Ling
+                    </Link>
                   </h4>
                   <p>Front-end Support - Click on the name to know more</p>
                 </div>
