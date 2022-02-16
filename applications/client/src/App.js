@@ -10,6 +10,7 @@ import About from "./components/about.component";
 import PrathibaUser from "./components/prathiba.component";
 import ChristopherUser from "./components/christopher.component";
 import MTKComponent from "./components/MTK.component";
+import TunniUser from "./components/tunni.component";
 
 class App extends Component {
   render() {
@@ -20,11 +21,11 @@ class App extends Component {
           <Route path="/prathiba" element={<PrathibaUser />} />
           <Route path="/myatkyaw" element={<MTKComponent />} />
           <Route path="/christopher" element={<ChristopherUser />} />
+          <Route path="/tunni" element={<TunniUser />} />
           <Route path="/" exact element={<About />} />
         </Routes>
       </Router>
     );
   }
 }
-
 export default App;

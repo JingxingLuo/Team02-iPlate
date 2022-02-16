@@ -72,7 +72,9 @@ export default class About extends Component {
                     <i class="bx bx-file"></i>
                   </div>
                   <h4>
-                    <a href="./tc.html">Tun-Ni Chiang</a>
+                    <Link to={"/tunni"} className="nav-link">
+                      Tun-Ni Chiang
+                    </Link>
                   </h4>
                   <p>Front-end Leader - Click on the name to know more </p>
                 </div>
