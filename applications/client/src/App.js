@@ -8,19 +8,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import About from "./components/about.component";
 import PrathibaUser from "./components/prathiba.component";
+import ChristopherUser from './components/christopher.component';
 
-// class App extends React.Component{
-// render() {
-  function App()  {
+class App extends React.Component{
+render() {
+  //function App()  {
   return (
     <Router>
-      <About />
-      <br />
-      <Routes>
-      <Route path="/prathiba" component={PrathibaUser} />
-      </Routes>
-  </Router>
+    <br />
+    <Routes>
+    <Route path='/prathiba' element={<PrathibaUser />} />
+    <Route path='/myatkyaw' element={<MTKComponent />} />
+    <Route path='/' exact element={<About />} />
+    <Route path="/christopher" element={ChristopherUser} />
+    </Routes>
+</Router>
+     
+     
   );
   }
-
+}
 export default App;
