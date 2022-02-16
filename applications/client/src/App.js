@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/about.component";
 import PrathibaUser from "./components/prathiba.component";
 
+import MTKComponent from "./components/MTK.component";
 
 class App extends Component{
 render() {
@@ -17,6 +18,7 @@ render() {
       <br />
       <Routes>
       <Route path='/prathiba' element={<PrathibaUser />} />
+      <Route path='/myatkyaw' element={<MTKComponent />} />
       <Route path='/' exact element={<About />} />
       </Routes>
   </Router>

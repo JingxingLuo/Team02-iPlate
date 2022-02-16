@@ -92,7 +92,7 @@ render() {
                 </svg>
                 <i class="bx bx-arch"></i>
               </div>
-              <h4><a href="./mtk.html">Myat Kyaw</a></h4>
+              <h4><Link to={'/myatkyaw'} className='nav-link'>Myat Kyaw</Link></h4>
               <p>Github Master - Click on the name to know more  </p>
             </div>
           </div>
