@@ -1,4 +1,4 @@
-import React from 'react';
+import {Component} from 'react';
 import './App.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css';
@@ -9,18 +9,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/about.component";
 import PrathibaUser from "./components/prathiba.component";
 
-// class App extends React.Component{
-// render() {
-  function App()  {
+
+class App extends Component{
+render() {
   return (
     <Router>
-      <About />
       <br />
       <Routes>
-      <Route path="/prathiba" component={PrathibaUser} />
+      <Route path='/prathiba' element={<PrathibaUser />} />
+      <Route path='/' exact element={<About />} />
       </Routes>
   </Router>
   );
   }
+}
 
 export default App;

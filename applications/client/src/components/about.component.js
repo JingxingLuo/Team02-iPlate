@@ -28,7 +28,7 @@ render() {
             </svg>
             <i class="bx bxl-dribbble"></i>
           </div>
-          <h4><Link to='/prathiba' className='nav-link'>Prathiba Ramesh</Link></h4>
+          <h4><Link to={'/prathiba'} className='nav-link'>Prathiba Ramesh</Link></h4>
           <p>Team Leader - Click on the name to know more </p>
         </div>
       </div>
