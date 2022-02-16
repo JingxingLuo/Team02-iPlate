@@ -19,7 +19,7 @@ class App extends Component {
         <Routes>
           <Route path="/prathiba" element={<PrathibaUser />} />
           <Route path="/myatkyaw" element={<MTKComponent />} />
-          <Route path="/christopher" element={ChristopherUser} />
+          <Route path="/christopher" element={<ChristopherUser />} />
           <Route path="/" exact element={<About />} />
         </Routes>
       </Router>
