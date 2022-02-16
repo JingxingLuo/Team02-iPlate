@@ -44,8 +44,8 @@ render() {
                <div class="col-lg-6">
                  <ul>
                    <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>21 October 1995</span></li>
-           <li><i class="bi bi-chevron-right"></i> <strong>Place:</strong> <span>India</span></li>
-                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Chennai</span></li>
+           <li><i class="bi bi-chevron-right"></i> <strong>Place:</strong> <span>Chennai, India</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Stack:</strong> <span>React | JavaScript | MongoDB</span></li>
                  </ul>
                </div>
                <div class="col-lg-6">
@@ -76,9 +76,9 @@ render() {
     
     <footer id="footer">
      <div class="container">
-       <div class="social-links">
-         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+       <div class="social-links">         
+         <a href="mailto:pramesh@sfsu.edu" class="instagram"><i class="bx bx-envelope"></i></a>
+         <a href="https://github.com/PrathibaRamesh" class="facebook"><i class="bx bxl-github"></i></a>
          <a href="https://www.linkedin.com/in/prathiba-r-b19491157/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
        </div>
        </div>
