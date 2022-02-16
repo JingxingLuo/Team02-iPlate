@@ -132,7 +132,7 @@ export default class About extends Component {
                     <i class="bx bx-layer"></i>
                   </div>
                   <h4>
-                    <a href="./am.html">Aung Myat</a>
+                    <Link to={"/aung"} className="nav-link"> Aung Myat</Link>
                   </h4>
                   <p>Scrum Master - Click on the name to know more</p>
                 </div>
@@ -161,7 +161,7 @@ export default class About extends Component {
                     <i class="bx bx-slideshow"></i>
                   </div>
                   <h4>
-                    <a href="./cl.html">Christopher Ling</a>
+                    <Link to={"/christopher"} className="nav-link"> Christopher Liang</Link>
                   </h4>
                   <p>Front-end Support - Click on the name to know more</p>
                 </div>

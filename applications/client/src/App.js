@@ -12,6 +12,8 @@ import ChristopherUser from "./components/christopher.component";
 import MTKComponent from "./components/MTK.component";
 import TunniUser from "./components/tunni.component";
 
+import AungUser from "./components/akm.component"
+
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class App extends Component {
         <Routes>
           <Route path="/prathiba" element={<PrathibaUser />} />
           <Route path="/myatkyaw" element={<MTKComponent />} />
+            <Route path="/aung" element={<AungUser />} />
           <Route path="/christopher" element={<ChristopherUser />} />
           <Route path="/tunni" element={<TunniUser />} />
           <Route path="/" exact element={<About />} />
