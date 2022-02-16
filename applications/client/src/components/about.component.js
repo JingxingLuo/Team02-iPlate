@@ -103,7 +103,9 @@ export default class About extends Component {
                     <i class="bx bx-tachometer"></i>
                   </div>
                   <h4>
-                    <a href="./jl.html">Jingxing Luo</a>
+                  <Link to={"/jingxing"} className="nav-link">
+                      Jingxing Luo
+                    </Link>
                   </h4>
                   <p>Back-end Leader - Click on the name to know more</p>
                 </div>

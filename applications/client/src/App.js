@@ -11,7 +11,7 @@ import PrathibaUser from "./components/prathiba.component";
 import ChristopherUser from "./components/christopher.component";
 import MTKComponent from "./components/MTK.component";
 import TunniUser from "./components/tunni.component";
-
+import Jingxing from "./components/jingxing.component";
 import AungUser from "./components/akm.component"
 
 class App extends Component {
@@ -25,7 +25,9 @@ class App extends Component {
             <Route path="/aung" element={<AungUser />} />
           <Route path="/christopher" element={<ChristopherUser />} />
           <Route path="/tunni" element={<TunniUser />} />
+          <Route path="/jingxing" element={<Jingxing />} />
           <Route path="/" exact element={<About />} />
+
         </Routes>
       </Router>
     );
