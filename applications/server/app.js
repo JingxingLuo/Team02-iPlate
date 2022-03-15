@@ -43,28 +43,33 @@ var db;
 MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     dbo = db.db("MyDatabase");
-    dbo.collection("test").findOne({ name: 'Harry' }, function (err, result) {
-        if (err) throw err;
-
-        console.log(result.length);
-        console.log(result.name);
-        console.log(result.phone);
-
-
-    });
 });
 
 
 app.get('/users/login', (req, res, next) => {
 
     console.log('user login!');
-    dbo.collection("test").findOne({ name: 'Harry' }, function (err, result) {
+
+
+    dbo.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
 
         if (err) throw err;
 
+        console.log(result)
+        if(result)
+        {
+           if(result.password == `${req.body.phone}`){
+               console.log(`user password matched!`);
+               res.send('LOG IN!')
+           }else{
+               console.log(`user log in failed!`);
+               res.redirect(`/`);
+           }
 
-        console.log(result.name);
-        console.log(result.phone);
+        }else{
+            console.log('user log in failed')
+
+        }
+
     })
-    res.send('User login triggered');
 })
