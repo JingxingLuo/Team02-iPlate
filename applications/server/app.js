@@ -39,11 +39,8 @@ MongoClient.connect(url, function(err, db) {
     })
 })*/
 
-var db;
-MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    dbo = db.db("MyDatabase");
-});
+
+
 
 
 app.get('/users/login', (req, res, next) => {
@@ -51,25 +48,36 @@ app.get('/users/login', (req, res, next) => {
     console.log('user login!');
 
 
-    dbo.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
+    let gg = "mongodb://localhost:27017/";
+    MongoClient.connect(gg)
+        .then((dbo) =>{
+            return Promise.resolve(dbo.db('MyDatabase'))
+         })
+        .then((client) => {
 
-        if (err) throw err;
+            client.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
 
-        console.log(result)
-        if(result)
-        {
-           if(result.password == `${req.body.phone}`){
-               console.log(`user password matched!`);
-               res.send('LOG IN!')
-           }else{
-               console.log(`user log in failed!`);
-               res.redirect(`/`);
-           }
+            if (err) throw err;
+            if(result)
+            {
+                if(result.password == `${req.body.phone}`){
+                    console.log(`user password matched!`);
+                    res.send('LOG IN!')
+                }else{
+                    console.log(`user log in failed!`);
+                    res.redirect(`/`);
+                }
 
-        }else{
-            console.log('user log in failed')
+            }else{
+                console.log('user log in failed')
 
-        }
+            }
 
+        })
+
+    }).catch((err) => {
+        console.log(`something went wrong ${err}`);
+        res.redirect('/');
     })
+
 })
