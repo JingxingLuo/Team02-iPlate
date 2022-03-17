@@ -1,11 +1,21 @@
 const express = require('express')
 var mongoose = require('mongoose')
+var bodyParser=require('body-parser');
+
+
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
 const app = express()
-app.use(express.json());
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+
+
+
 
 app.listen(8000, () => {
     console.log("TEST express")
@@ -43,10 +53,25 @@ MongoClient.connect(url, function(err, db) {
 
 
 
-app.get('/users/login', (req, res, next) => {
+app.post('/users/login', (req, res, next) => {
 
-    console.log('user login!');
+    var temp = req.body;
+    let temp_string=[];
 
+    for(let [key,value] of Object.entries(temp)){
+       temp_string.push(key)
+    }
+
+    let TargetUsername,TargetPassword;
+
+    for(let [key,value]of Object.entries(JSON.parse(temp_string))){
+        if(key==='username'){
+            TargetUsername=value;
+        }
+        if(key==='password'){
+            TargetPassword=value;
+        }
+    }
 
     let gg = "mongodb://localhost:27017/";
     MongoClient.connect(gg)
@@ -55,21 +80,21 @@ app.get('/users/login', (req, res, next) => {
          })
         .then((client) => {
 
-            client.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
+            client.collection("test").findOne({ name: `${TargetUsername}` }, function (err, result) {
 
             if (err) throw err;
             if(result)
             {
-                if(result.password == `${req.body.phone}`){
+                if(result.password === `${TargetPassword}`){
                     console.log(`user password matched!`);
-                    res.send('LOG IN!')
+                    res.redirect('/')
                 }else{
-                    console.log(`user log in failed!`);
+                    console.log(`password in failed!`);
                     res.redirect(`/`);
                 }
 
             }else{
-                console.log('user log in failed')
+                console.log('USER NAME NOT MATCHED')
 
             }
 
