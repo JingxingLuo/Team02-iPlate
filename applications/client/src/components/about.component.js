@@ -3,11 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default class About extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
         <header id="header" class="d-flex flex-column justify-content-center">
           <nav id="navbar" class="navbar nav-menu"></nav>

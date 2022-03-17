@@ -1,0 +1,50 @@
+/*--------------------------------------------------------------
+# Custom for Milestone 2
+--------------------------------------------------------------*/
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.icon {
+  width: 80px;
+}
+
+.form-container {
+  margin: 80px auto;
+  padding: 30px;
+  /* border: 3px solid black; */
+  width: 50%;
+  text-align: center;
+  background-color: #f8f9fa;
+  box-shadow: 5px 10px #eeeeee;
+}
+
+.form-title {
+  /* border: 3px solid red; */
+  margin: 0 0 20px 0;
+}
+
+.form-entry {
+  text-align: center;
+}
+
+.form-input {
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+
+.button {
+  color: #85c88a;
+  border: 2px solid #85c88a;
+  margin: 3px;
+  background-color: transparent;
+}
+
+.button:hover {
+  background-color: #85c88a;
+  border: 2px solid #85c88a;
+  color: white;
+}
