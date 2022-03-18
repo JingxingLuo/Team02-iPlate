@@ -7,13 +7,18 @@ function Navbar(props) {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/* should link to home page */}
-        {/* <a className="navbar-brand" href="./pages/Home.jsx"> */}
-        <img
-          className="icon"
-          src="assets/img/iPlate_icon.png"
-          alt="iPlate-icon"
-        />
-        {/* </a> */}
+        <div class="container">
+          <a className="navbar-brand">
+            {" "}
+            {/* href="./pages/Home.jsx" */}
+            <img
+              className="icon"
+              src="assets/img/iPlate_icon.png"
+              alt="iPlate-icon"
+            />
+            Food Recording App!!
+          </a>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -29,16 +34,16 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             {/* Record! button */}
-            {props.isLogged && (
+            {/* {props.isLogged && (
               <li className="nav-item active">
                 <a className="nav-link" href="./pages/Home.jsx">
                   Record! <span className="sr-only">(current)</span>
                 </a>
               </li>
-            )}
+            )} */}
 
             {/* About button */}
-            {props.isLogged && (
+            {/* {props.isLogged && (
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -60,45 +65,45 @@ function Navbar(props) {
                   </a>
                 </div>
               </li>
-            )}
+            )} */}
 
             {/* FAQ button */}
-            {props.isLogged && (
+            {/* {props.isLogged && (
               <li className="nav-item">
                 <a className="nav-link" href="./pages/Home.jsx">
                   FAQ
                 </a>
               </li>
-            )}
+            )} */}
 
             {/* Story button */}
-            {props.isLogged && (
+            {/* {props.isLogged && (
               <li className="nav-item">
                 <a className="nav-link" href="./pages/Home.jsx">
                   Story
                 </a>
               </li>
-            )}
+            )} */}
 
             {/* Contact Us button */}
-            {props.isLogged && (
+            {/* {props.isLogged && (
               <li className="nav-item">
                 <Link className="nav-link" to={"/contact"}>
                   Contact Us
                 </Link>
               </li>
-            )}
+            )} */}
           </ul>
           <form className="form-inline my-2 my-lg-0">
             {/* Login button */}
-            {!props.isLogged && (
+            {/* {!props.isLogged && (
               <Link
-                to={"/"}
+                to={"/login"}
                 className="nav-link btn btn-outline-success my-2 my-sm-0 button"
               >
                 Login
               </Link>
-            )}
+            )} */}
 
             {/* Sign up! button */}
             {!props.isLogged && (
@@ -110,14 +115,14 @@ function Navbar(props) {
               </Link>
             )}
 
-            {/* My Account button */}
-            {props.isLogged && (
-              <button
-                className="btn btn-outline-success my-2 my-sm-0 button"
-                type="submit"
+            {/* LogOut button */}
+            {!props.isLogged && (
+              <Link
+                to={"/"}
+                className="nav-link btn btn-outline-success my-2 my-sm-0 button"
               >
-                Logout
-              </button>
+                Log Out
+              </Link>
             )}
           </form>
         </div>

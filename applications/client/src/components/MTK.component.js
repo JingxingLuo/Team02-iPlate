@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
+//import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import {Link} from 'react-router-dom';
@@ -17,7 +17,7 @@ export default class MTKComponent extends Component{
                     <nav id="navbar" class="navbar nav-menu">
                         <ul>
 
-                            <li><Link to="/" class="nav-link scrollto"><i className="bx bx-user"></i> <span>About</span></Link></li>
+                            <li><Link to="/about" class="nav-link scrollto"><i className="bx bx-user"></i> <span>About</span></Link></li>
 
                         </ul>
                     </nav>

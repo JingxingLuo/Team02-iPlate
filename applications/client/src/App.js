@@ -29,8 +29,8 @@ class App extends Component {
           <Route path="/christopher" element={<ChristopherUser />} />
           <Route path="/tunni" element={<TunniUser />} />
           <Route path="/jingxing" element={<Jingxing />} />
-          <Route path="/About" exact element={<About />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" exact element={<Login />} />
+          <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

@@ -1,19 +1,20 @@
 import React from "react";
-import Input from "./Input";
+//import Input from "./Input";
 
 const Form = (props) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirmPassword, setconfirmPassword] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  var globalVar = window.sessionStorage;
 
   const handleSubmit = () => {
-    console.log("test", username, password);
+    //console.log("test",username,password);
     const body = {
       username: username,
       password: password,
     };
-    console.log(body);
-    const TEMP = { username: "asdadsdsadsadsadas" };
-
+    //console.log(body);
     const settings = {
       method: "post",
       headers: {
@@ -22,9 +23,21 @@ const Form = (props) => {
       },
       body: JSON.stringify(body),
     };
-    fetch("http://localhost:8000/users/login", settings).then((body) =>
-      console.log(body)
-    );
+
+    if (password === confirmPassword) console.log("Password matched!");
+
+    fetch("http://localhost:8000/users/login", settings)
+      .then((res) => res.json())
+      .then((body) => {
+        console.log(body);
+        console.log(body.isSucceed);
+        console.log(body.message);
+        setMessage(body.message);
+        globalVar.setItem("testMessage", JSON.stringify(body.message));
+        globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
+      });
+    //.then((result)=>console.log(result))
+    // .catch((err) =>console.log(err))
   };
 
   return (
@@ -67,16 +80,13 @@ const Form = (props) => {
 
         {/* comfirm password -> register page */}
         {props.page === "register" && (
-          <div className="form-group mt-3  input-container">
+          <div className="form-group">
             <input
               type="password"
-              className="form-control"
-              name="confirm-password"
-              id="exampleInputComfirmPassword1"
-              placeholder="comfirm password"
-              // value={confirmPassword}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              id="exampleInputPassword2"
+              placeholder="confirm password"
+              value={confirmPassword}
+              onChange={(e) => setconfirmPassword(e.target.value)}
             />
           </div>
         )}
@@ -85,9 +95,14 @@ const Form = (props) => {
         {props.page === "register" && <div className="dropdown-divider"></div>}
 
         {/* submit button */}
-        <button type="submit" className="btn btn-primary button">
+        <button
+          type="submit"
+          className="btn btn-primary button"
+          onClick={handleSubmit}
+        >
           {props.page === "register" ? "Sign up!" : "Login"}
         </button>
+        <div>{message}</div>
       </form>
     </div>
     // <div className="form-container">
