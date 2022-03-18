@@ -6,7 +6,7 @@ function Login(props) {
   return (
     <div>
       {/* nav bar */}
-      <Navbar isLogged={false} />
+      <Navbar isLogged={true} />
 
       {/* content */}
       <Form page="login" />

@@ -16,12 +16,12 @@ import Jingxing from "./components/jingxing.component";
 import AungUser from "./components/akm.component";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
+import Contact from "./components/pages/Contact";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <br />
         <Routes>
           <Route path="/prathiba" element={<PrathibaUser />} />
           <Route path="/myatkyaw" element={<MTKComponent />} />
@@ -29,9 +29,10 @@ class App extends Component {
           <Route path="/christopher" element={<ChristopherUser />} />
           <Route path="/tunni" element={<TunniUser />} />
           <Route path="/jingxing" element={<Jingxing />} />
-          <Route path="/" exact element={<About />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/About" exact element={<About />} />
+          <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
     );

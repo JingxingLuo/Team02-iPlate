@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import image from "../";
 
 function Navbar(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/* should link to home page */}
-        <a className="navbar-brand" href="./pages/Home.jsx">
-          <img
-            className="icon"
-            src="/images/iPlate_icon.png"
-            alt="iPlate-icon"
-          />
-        </a>
+        {/* <a className="navbar-brand" href="./pages/Home.jsx"> */}
+        <img
+          className="icon"
+          src="assets/img/iPlate_icon.png"
+          alt="iPlate-icon"
+        />
+        {/* </a> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -82,9 +83,9 @@ function Navbar(props) {
             {/* Contact Us button */}
             {props.isLogged && (
               <li className="nav-item">
-                <a className="nav-link" href="./pages/Home.jsx">
+                <Link className="nav-link" to={"/contact"}>
                   Contact Us
-                </a>
+                </Link>
               </li>
             )}
           </ul>
@@ -115,7 +116,7 @@ function Navbar(props) {
                 className="btn btn-outline-success my-2 my-sm-0 button"
                 type="submit"
               >
-                My Account
+                Logout
               </button>
             )}
           </form>

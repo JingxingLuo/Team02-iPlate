@@ -11,6 +11,15 @@
   width: 80px;
 }
 
+.input-container {
+  margin: 10px auto;
+  width: 50%;
+}
+
+input {
+  text-align: center;
+}
+
 .form-container {
   margin: 80px auto;
   padding: 30px;
