@@ -22,6 +22,7 @@ const Signup =(props) => {
             headers: {
                 //'Content-Type': 'application/json',
                 "Content-Type": "application/x-www-form-urlencoded",
+                //"Content-Type": "text/plain"
             },
             body: JSON.stringify(body),
         };
@@ -29,9 +30,9 @@ const Signup =(props) => {
         if (password === confirmPassword) {
             alert('HERE!')
             fetch('http://localhost:8000/users/signup', settings)
-                .then((res) =>
-                     res.json())
-                .then((body) => {
+                .then((res) =>res.json()
+                 //res.json()
+                ).then((body) => {
                     alert(body.message)
                     console.log(body);
                     console.log(body.isSucceed);
@@ -42,10 +43,10 @@ const Signup =(props) => {
                     // globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
                     alert(body.isSucceed)
                     if(body.isSucceed==='true'){
-                        alert('Successfully created!')
-                        window.location.href = '/login';
+                        //alert('Successfully created!')
+                        //window.location.href = '/login';
                     }
-                });
+                }).catch((err)=> alert(err));
             //.then((result)=>console.log(result))
             // .catch((err) =>console.log(err))
         }else{
@@ -60,9 +61,6 @@ const Signup =(props) => {
             <Navbar isLogged={false} />
 
             <div className="form-container">
-
-
-
                 {/* form title */}
                 <h2 className="form-title">Welcome back!</h2>
 
@@ -102,7 +100,7 @@ const Signup =(props) => {
                     </div>
 
 
-                    {/* comfirm password -> register page */}
+                    {/* comfirm password -> register page
                     {props.page === "register" && (
                         <div className="form-group">
                             <input
@@ -113,7 +111,7 @@ const Signup =(props) => {
                                 onChange={(e) => setconfirmPassword(e.target.value)}
                             />
                         </div>
-                    )}
+                    )} */}
 
                     {/* divider -> register page */}
                     {props.page === "register" && <div className="dropdown-divider"></div>}

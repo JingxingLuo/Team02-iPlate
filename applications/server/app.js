@@ -1,9 +1,6 @@
 const express = require('express')
 var mongoose = require('mongoose')
 var bodyParser=require('body-parser');
-
-
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
@@ -13,9 +10,6 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
-
-
-
 
 app.listen(8000, () => {
     console.log("TEST express")
@@ -100,6 +94,7 @@ app.post('/users/login', (req, res, next) => {
             }else{
                 res.header("Access-Control-Allow-Origin", "http://localhost:3000");
                 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
                 res.send({"isSucceed":false, "message": "Can not find the user!"});
                 console.log('USER NAME NOT MATCHED')
 
@@ -158,15 +153,13 @@ app.post('/users/signup', (req, res, next) => {
                         if(err) throw err;
                         if(result) {
                             console.log(result);
-
+                            console.log(`User signed up with name:${TargetUsername}`)
                             res.header("Access-Control-Allow-Origin", "http://localhost:3000");
                             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                            res.send({"isSucceed":true, "message": "Signed up successfully!!"})
+                            res.send({"isSucceed":"true", "message": "Signed up successfully!!"});
                         }
                     })
-
                 }
-
             })
 
         }).catch((err) => {
