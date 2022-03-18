@@ -8,16 +8,16 @@ export default class TunniUser extends Component {
   render() {
     return (
       <div>
-        <button type="button" class="mobile-nav-toggle d-xl-none">
-          <i class="bi bi-list mobile-nav-toggle"></i>
+        <button type="button" className="mobile-nav-toggle d-xl-none">
+          <i className="bi bi-list mobile-nav-toggle"></i>
         </button>
-        <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-        <header id="header" class="d-flex flex-column justify-content-center">
-          <nav id="navbar" class="navbar nav-menu">
+        <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
+        <header id="header" className="d-flex flex-column justify-content-center">
+          <nav id="navbar" className="navbar nav-menu">
             <ul>
               <li>
-                <Link to="/about" class="nav-link scrollto">
-                  <i class="bx bx-user"></i> <span>About</span>
+                <Link to="/about" className="nav-link scrollto">
+                  <i className="bx bx-user"></i> <span>About</span>
                 </Link>
               </li>
             </ul>
@@ -25,59 +25,59 @@ export default class TunniUser extends Component {
         </header>
 
         <main id="main">
-          <section id="about" class="about">
-            <div class="container">
-              <div class="section-title">
+          <section id="about" className="about">
+            <div className="container">
+              <div className="section-title">
                 <h2>Tun-Ni Chiang</h2>
               </div>
 
-              <div class="row">
-                <div class="col-lg-4">
+              <div className="row">
+                <div className="col-lg-4">
                   <img
                     src="assets/img/portfolio/tunni_icon.jpg"
-                    class="img-fluid"
+                    className="img-fluid"
                     alt=""
                   />
                 </div>
-                <div class="col-lg-8 pt-4 pt-lg-0 content">
+                <div className="col-lg-8 pt-4 pt-lg-0 content">
                   <h3>Front-End Lead</h3>
-                  <p class="fst-italic">
+                  <p className="fst-italic">
                     This is my second to the last semester at SFSU! Wish our
                     application could help some people who are struggling in
                     building a healthy eating habits or help them to rebuild
                     their relationship with foods :)
                   </p>
-                  <div class="row">
-                    <div class="col-lg-6">
+                  <div className="row">
+                    <div className="col-lg-6">
                       <ul>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>Birthday:</strong>{" "}
                           <span>17 January 2000</span>
                         </li>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>Place:</strong> <span>Taiwan</span>
                         </li>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>City:</strong> <span>Taipei</span>
                         </li>
                       </ul>
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-6">
                       <ul>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>Age:</strong> <span>22</span>
                         </li>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>Degree Pursuing:</strong>{" "}
                           <span>Bachelor</span>
                         </li>
                         <li>
-                          <i class="bi bi-chevron-right"></i>{" "}
+                          <i className="bi bi-chevron-right"></i>{" "}
                           <strong>Email:</strong>{" "}
                           <span>tchiang3@mail.sfsu.com</span>
                         </li>
@@ -106,26 +106,26 @@ export default class TunniUser extends Component {
         </main>
 
         <footer id="footer">
-          <div class="container">
-            <div class="social-links">
-              <a href="mailto:tchiang3@mail.sfsu.edu" class="instagram">
-                <i class="bx bx-envelope"></i>
+          <div className="container">
+            <div className="social-links">
+              <a href="mailto:tchiang3@mail.sfsu.edu" className="instagram">
+                <i className="bx bx-envelope"></i>
               </a>
               <a
                 href="https://github.com/tunni-chiang"
                 target="_blank"
                 rel="noreferrer"
-                class="facebook"
+                className="facebook"
               >
-                <i class="bx bxl-github"></i>
+                <i className="bx bxl-github"></i>
               </a>
               <a
                 href="https://www.linkedin.com/in/tunni-chiang-9171631a3"
                 target="_blank"
                 rel="noreferrer"
-                class="linkedin"
+                className="linkedin"
               >
-                <i class="bx bxl-linkedin"></i>
+                <i className="bx bxl-linkedin"></i>
               </a>
             </div>
           </div>
