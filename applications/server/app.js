@@ -117,23 +117,23 @@ app.post('/users/login', (req, res, next) => {
 
 app.post('/users/signup', (req, res, next) => {
 
-    // var temp = req.body;
-    // let temp_string=[];
-    //
-    // for(let [key,value] of Object.entries(temp)){
-    //     temp_string.push(key)
-    // }
-    //
-    // let TargetUsername,TargetPassword;
-    //
-    // for(let [key,value]of Object.entries(JSON.parse(temp_string))){
-    //     if(key==='username'){
-    //         TargetUsername=value;
-    //     }
-    //     if(key==='password'){
-    //         TargetPassword=value;
-    //     }
-    // }
+    var temp = req.body;
+    let temp_string=[];
+
+    for(let [key,value] of Object.entries(temp)){
+        temp_string.push(key)
+    }
+
+    let TargetUsername,TargetPassword;
+
+    for(let [key,value]of Object.entries(JSON.parse(temp_string))){
+        if(key==='username'){
+            TargetUsername=value;
+        }
+        if(key==='password'){
+            TargetPassword=value;
+        }
+    }
 
     let gg = "mongodb://localhost:27017/";
     MongoClient.connect(gg)
@@ -142,7 +142,7 @@ app.post('/users/signup', (req, res, next) => {
         })
         .then((client) => {
 
-            client.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
+            client.collection("test").findOne({ name: `${TargetUsername}` }, function (err, result) {
 
                 if (err) throw err;
                 if(result)
@@ -152,13 +152,16 @@ app.post('/users/signup', (req, res, next) => {
 
                 }else{
                     client.collection('test').insertOne({
-                        "name": `${req.body.name}`,
-                        "password": `${req.body.password}`
+                        "name": `${TargetUsername}`,
+                        "password": `${TargetPassword}`
                     },(err,result)=> {
                         if(err) throw err;
                         if(result) {
                             console.log(result);
-                            res.send("User sign up")
+
+                            res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                            res.send({"isSucceed":true, "message": "Signed up successfully!!"})
                         }
                     })
 

@@ -4,6 +4,7 @@ import React from "react";
 const Form =(props) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [confirmPassword,setconfirmPassword]=React.useState('');
   const [message, setMessage] = React.useState('');
   var globalVar = window.sessionStorage;
 
@@ -22,6 +23,11 @@ const Form =(props) => {
       },
       body: JSON.stringify(body),
     };
+
+    if(password === confirmPassword)
+    console.log('Password matched!');
+
+
     fetch('http://localhost:8000/users/login', settings)
     .then((res)=>res.json())
     .then(body => {
@@ -74,6 +80,8 @@ const Form =(props) => {
               type="password"
               id="exampleInputPassword2"
               placeholder="confirm password"
+              value={confirmPassword}
+              onChange={(e) => setconfirmPassword(e.target.value)}
             />
           </div>
         )}
