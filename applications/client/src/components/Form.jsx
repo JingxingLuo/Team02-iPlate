@@ -1,7 +1,7 @@
 import React from "react";
 //import Input from "./Input";
 
-const Form =() => {
+const Form =(props) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [message, setMessage] = React.useState('');
