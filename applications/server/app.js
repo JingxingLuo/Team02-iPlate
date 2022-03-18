@@ -113,3 +113,63 @@ app.post('/users/login', (req, res, next) => {
     })
 
 })
+
+
+app.post('/users/signup', (req, res, next) => {
+
+    // var temp = req.body;
+    // let temp_string=[];
+    //
+    // for(let [key,value] of Object.entries(temp)){
+    //     temp_string.push(key)
+    // }
+    //
+    // let TargetUsername,TargetPassword;
+    //
+    // for(let [key,value]of Object.entries(JSON.parse(temp_string))){
+    //     if(key==='username'){
+    //         TargetUsername=value;
+    //     }
+    //     if(key==='password'){
+    //         TargetPassword=value;
+    //     }
+    // }
+
+    let gg = "mongodb://localhost:27017/";
+    MongoClient.connect(gg)
+        .then((dbo) =>{
+            return Promise.resolve(dbo.db('MyDatabase'))
+        })
+        .then((client) => {
+
+            client.collection("test").findOne({ name: `${req.body.name}` }, function (err, result) {
+
+                if (err) throw err;
+                if(result)
+                {
+                    console.log('User already exists');
+                    res.send('User already exists')
+
+                }else{
+                    client.collection('test').insertOne({
+                        "name": `${req.body.name}`,
+                        "password": `${req.body.password}`
+                    },(err,result)=> {
+                        if(err) throw err;
+                        if(result) {
+                            console.log(result);
+                            res.send("User sign up")
+                        }
+                    })
+
+                }
+
+            })
+
+        }).catch((err) => {
+        console.log(`something went wrong ${err}`);
+        res.redirect('/');
+    })
+
+})
+
