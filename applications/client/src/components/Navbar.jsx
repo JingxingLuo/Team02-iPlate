@@ -31,8 +31,7 @@ function Navbar(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        {/* should link to home page */}
-        <div className="container">
+        <div className="navbar-container">
           <a className="navbar-brand">
             {" "}
             {/* href="./pages/Home.jsx" */}
@@ -41,8 +40,10 @@ function Navbar(props) {
               src="assets/img/iPlate_icon.png"
               alt="iPlate-icon"
             />
-            Eat well, Live Well, Be well
           </a>
+        </div>
+        <div className="flex-center">
+          <h3 className="navbar-quote">Eat well, Live Well, Be well</h3>
         </div>
         <button
           className="navbar-toggler"
@@ -56,110 +57,17 @@ function Navbar(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            {/* Record! button */}
-            {/* {props.isLogged && (
-              <li className="nav-item active">
-                <a className="nav-link" href="./pages/Home.jsx">
-                  Record! <span className="sr-only">(current)</span>
-                </a>
-              </li>
-            )} */}
-
-            {/* About button */}
-            {/* {props.isLogged && (
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="./pages/Home.jsx"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  About
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="./pages/Home.jsx">
-                    Mission
-                  </a>
-                  <a className="dropdown-item" href="./pages/Home.jsx">
-                    Our Team
-                  </a>
-                </div>
-              </li>
-            )} */}
-
-            {/* FAQ button */}
-            {/* {props.isLogged && (
-              <li className="nav-item">
-                <a className="nav-link" href="./pages/Home.jsx">
-                  FAQ
-                </a>
-              </li>
-            )} */}
-
-            {/* Story button */}
-            {/* {props.isLogged && (
-              <li className="nav-item">
-                <a className="nav-link" href="./pages/Home.jsx">
-                  Story
-                </a>
-              </li>
-            )} */}
-
-            {/* Contact Us button */}
-            {/* {props.isLogged && (
-              <li className="nav-item">
-                <Link className="nav-link" to={"/contact"}>
-                  Contact Us
-                </Link>
-              </li>
-            )} */}
-          </ul>
-          <form className="form-inline my-2 my-lg-0">
-            {/* Login button */}
-            {/* {!props.isLogged && (
-              <Link
-                to={"/login"}
-                className="nav-link btn btn-outline-success my-2 my-sm-0 button"
-              >
-                Login
-              </Link>
-            )} */}
-
-            {/* Sign up! button */}
-            {!isSucceed && (
-              <Link
-                to={"/signup"}
-                className="nav-link btn btn-outline-success my-2 my-sm-0 button"
-              >
-                Sign up!
-              </Link>
-            )}
-
-            {/* LogOut button */}
-            {/* {isSucceed && (
-              <button type= "submit"  onClick={handleSubmit1}
-                className="nav-link btn btn-outline-success my-2 my-sm-0 button"
-              >
-                Log Out
-              </button>
-            )} */}
-
-            {/* My Account button */}
-            {props.isLogged && (
-              <button
-                className="btn btn-outline-success my-2 my-sm-0 button"
-                type="submit"
-              >
-                My Account
-              </button>
-            )}
-          </form>
-        </div>
+        {/* Sign up! button */}
+        {!isSucceed && (
+          <div className="nav-a">
+            <Link
+              to={"/signup"}
+              className="btn btn-outline-success my-2 my-sm-0 button"
+            >
+              Sign up!
+            </Link>
+          </div>
+        )}
       </nav>
     </div>
   );

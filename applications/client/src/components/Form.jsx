@@ -24,27 +24,26 @@ const Form = (props) => {
       body: JSON.stringify(body),
     };
 
-    if(password === confirmPassword)
-    console.log('Password matched!');
-    fetch('http://localhost:8000/users/login', settings)
-    .then((res)=>res.json())
-    .then(body => {
-      console.log(body);
-      console.log(body.isSucceed);
-      //alert(body.username);
-      console.log(body.message);
-      setMessage(body.message);
-      
-      globalVar.setItem("username", JSON.stringify(body.username));
-      //globalVar.setItem("testMessage", JSON.stringify(body.message));
-      globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
-      if(body.isSucceed===true){
-        //alert('Successfully created!')
-        window.location.href = '/about';
-    }else{
-      alert(body.message);
-    }
-    });
+    if (password === confirmPassword) console.log("Password matched!");
+    fetch("http://localhost:8000/users/login", settings)
+      .then((res) => res.json())
+      .then((body) => {
+        console.log(body);
+        console.log(body.isSucceed);
+        //alert(body.username);
+        console.log(body.message);
+        setMessage(body.message);
+
+        globalVar.setItem("username", JSON.stringify(body.username));
+        //globalVar.setItem("testMessage", JSON.stringify(body.message));
+        globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
+        if (body.isSucceed === true) {
+          //alert('Successfully created!')
+          window.location.href = "/about";
+        } else {
+          alert(body.message);
+        }
+      });
     //.then((result)=>console.log(result))
     // .catch((err) =>console.log(err))
   };
@@ -111,13 +110,7 @@ const Form = (props) => {
         >
           {props.page === "register" ? "Sign up!" : "Login"}
         </button>
-<<<<<<< HEAD
-        <div>{message}</div>
-=======
-        <div>
-          {/* {message} */}
-        </div>
->>>>>>> 6f673b9a01709ee56845c6f8d8d0e60f32fe5a94
+        <div>{/* {message} */}</div>
       </form>
     </div>
     // <div className="form-container">

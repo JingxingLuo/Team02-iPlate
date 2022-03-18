@@ -11,6 +11,18 @@
   width: 80px;
 }
 
+.flex-center {
+  margin: auto;
+}
+
+.nav-quote {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* .nav-a:focus {
+  text-decoration: none;
+} */
+
 .input-container {
   margin: 10px auto;
   width: 50%;
