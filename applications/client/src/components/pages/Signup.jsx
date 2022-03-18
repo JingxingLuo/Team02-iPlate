@@ -51,12 +51,12 @@ import Form from "../Form";
                     // const settings = {
                     //     method: "post",
                     // };
-                    fetch('http://localhost:8000/users/fetchFailed',{method: "post"})
+                    /**fetch('http://localhost:8000/users/fetchFailed',{method: "post"})
                     .then((res)=>res.json())
                     .then((body)=>{
                         setMessage(body.message)
                     })
-                    .catch((err)=>alert(`Double FETCH FAILED!!!`));
+                    .catch((err)=>alert(`Double FETCH FAILED!!!`)); */
                     window.location.href='/signup';
                     alert(err)
                 });
