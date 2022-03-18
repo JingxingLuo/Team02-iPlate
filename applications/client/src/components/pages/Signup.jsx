@@ -7,11 +7,10 @@ function Signup() {
   return (
     <div>
       {/* nav bar */}
-      <h3>Signup</h3>
-      <Navbar />
+      <Navbar isLogged={false} />
 
       {/* content */}
-      <Form />
+      <Form page="register" />
     </div>
   );
 }

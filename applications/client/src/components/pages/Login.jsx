@@ -18,7 +18,7 @@ function Login() {
   return (
     <div>
       {/* nav bar */}
-      <Navbar />
+      <Navbar isLogged={false} />
 
       {/* content */}
       <Form />

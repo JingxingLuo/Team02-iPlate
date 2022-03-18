@@ -10,17 +10,17 @@ const Form =() => {
   const handleSubmit = () => {
     //console.log("test",username,password);
     const body = {
-      "username": username,
-      "password": password
+      username: username,
+      password: password,
     };
     //console.log(body);
     const settings = {
-      method: 'post',
+      method: "post",
       headers: {
         //'Content-Type': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: (JSON.stringify(body)),
+      body: JSON.stringify(body),
     };
     fetch('http://localhost:8000/users/login', settings)
     .then((res)=>res.json())
@@ -43,26 +43,49 @@ const Form =() => {
       <h2 className="form-title">Welcome back!</h2>
 
       <form>
+        {/* username */}
         <div className="form-group form-entry">
           <input
             type="text"
             id="exampleInputEmail1"
             placeholder="email / username"
-            required autoFocus
-                        value={username} onChange={(e) => setUsername(e.target.value)}
+            required
+            autoFocus
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
+        {/* password */}
         <div className="form-group">
           <input
             type="password"
             id="exampleInputPassword1"
             placeholder="password"
-            value={password} onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary button" onClick={handleSubmit}>
-          Submit
+
+        {/* comfirm password -> register page */}
+        {props.page === "register" && (
+          <div className="form-group">
+            <Input
+              type="password"
+              id="exampleInputPassword1"
+              placeholder="comfirm password"
+            />
+          </div>
+        )}
+
+        {/* divider -> register page */}
+        {props.page === "register" && <div className="dropdown-divider"></div>}
+
+        {/*  */}
+
+        {/* submit button */}
+        <button type="submit" className="btn btn-primary button">
+          {props.page === "register" ? "Sign up!" : "Login"}
         </button>
         <div>
           {message}
@@ -70,6 +93,6 @@ const Form =() => {
       </form>
     </div>
   );
-}
+};
 
 export default Form;
