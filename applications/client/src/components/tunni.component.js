@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+//import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Link } from "react-router-dom";
@@ -114,6 +114,7 @@ export default class TunniUser extends Component {
               <a
                 href="https://github.com/tunni-chiang"
                 target="_blank"
+                rel="noreferrer"
                 class="facebook"
               >
                 <i class="bx bxl-github"></i>
@@ -121,6 +122,7 @@ export default class TunniUser extends Component {
               <a
                 href="https://www.linkedin.com/in/tunni-chiang-9171631a3"
                 target="_blank"
+                rel="noreferrer"
                 class="linkedin"
               >
                 <i class="bx bxl-linkedin"></i>

@@ -87,13 +87,20 @@ app.post('/users/login', (req, res, next) => {
             {
                 if(result.password === `${TargetPassword}`){
                     console.log(`user password matched!`);
-                    res.redirect('/')
+                    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    res.send({"isSucceed":true, "message": "Logged in!!"})
                 }else{
+                    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    res.send({"isSucceed":false, "message": "Password is wrong!!"} );
                     console.log(`password in failed!`);
-                    res.redirect(`/`);
                 }
 
             }else{
+                res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                res.send({"isSucceed":false, "message": "Can not find the user!"});
                 console.log('USER NAME NOT MATCHED')
 
             }
