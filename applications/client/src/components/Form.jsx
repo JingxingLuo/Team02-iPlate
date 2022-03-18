@@ -1,24 +1,19 @@
 import React from "react";
-//import Input from "./Input";
 
 const Form = (props) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setconfirmPassword] = React.useState("");
-  const [message, setMessage] = React.useState("");
   var globalVar = window.sessionStorage;
 
   const handleSubmit = () => {
-    //console.log("test",username,password);
     const body = {
       username: username,
       password: password,
     };
-    //console.log(body);
     const settings = {
       method: "post",
       headers: {
-        //'Content-Type': 'application/json',
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: JSON.stringify(body),
@@ -28,24 +23,18 @@ const Form = (props) => {
     fetch("http://localhost:8000/users/login", settings)
       .then((res) => res.json())
       .then((body) => {
-        console.log(body);
-        console.log(body.isSucceed);
-        //alert(body.username);
-        console.log(body.message);
-        setMessage(body.message);
-
         globalVar.setItem("username", JSON.stringify(body.username));
-        //globalVar.setItem("testMessage", JSON.stringify(body.message));
         globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
-        if (body.isSucceed === true) {
-          //alert('Successfully created!')
+        if (body.isSucceed == true) {
           window.location.href = "/about";
         } else {
           alert(body.message);
+          globalVar.removeItem("isSucceed");
+          globalVar.removeItem("username");
+          globalVar.removeItem("testMessage");
+          window.location.href = "/";
         }
       });
-    //.then((result)=>console.log(result))
-    // .catch((err) =>console.log(err))
   };
 
   return (

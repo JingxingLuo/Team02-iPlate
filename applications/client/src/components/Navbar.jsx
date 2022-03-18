@@ -7,27 +7,11 @@ function Navbar(props) {
   var isSucceed = globalVar.getItem("isSucceed");
   var loggedname = globalVar.getItem("username");
 
-  //alert(typeof(isSucceed));
-  //alert(loggedname);
-  // const handleSubmit1 = () => {
-  //   window.location.href = 'http://www.google.com';
-  //   globalVar.removeItem("isSucceed");
-  //   globalVar.removeItem("username");
-  //   globalVar.removeItem("testMessage");
-  //   //window.location.href='www.google.com';
-
-  //   if(true){
-  //     window.location.href = 'http://www.google.com';
-  //     return (
-  //       <div>
-  //       <h1 style = {{paddingBottom:'120px'}}>Welcome back!</h1>
-  //       <div style = {{color :'lightblue', paddingBottom:'300px'}}>
-  //           Redirecting to the home page in 3 seconds..
-  //       </div>
-  //   </div>)
-  //   }
-  // }
-
+  const handleSubmit1 = () => {
+    globalVar.removeItem("isSucceed");
+    globalVar.removeItem("username");
+    globalVar.removeItem("testMessage");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,6 +53,84 @@ function Navbar(props) {
           </div>
         )}
       </nav>
+      {isSucceed && (
+        <div>
+          <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
+          <header
+            id="header"
+            className="d-flex flex-column justify-content-center"
+          >
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/home" className="nav-link scrollto">
+                    <i className="bx bx-home"></i> <span>Home</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/recordFood" className="nav-link scrollto">
+                    <i className="bx bx-food-tag"></i> <span>Record</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/viewHistory" className="nav-link scrollto">
+                    <i className="bx bx-history"></i> <span>History</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/viewUserDetails" className="nav-link scrollto">
+                    <i className="bx bx-user"></i> <span>User Details</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/about" className="nav-link scrollto">
+                    <i className="bx bx-message-square-detail"></i>{" "}
+                    <span>About</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link to="/faq" className="nav-link scrollto">
+                    <i className="bx bx-question-mark"></i> <span>FAQ</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <nav id="navbar" className="navbar nav-menu">
+              <ul>
+                <li>
+                  <Link
+                    to="/"
+                    onClick={handleSubmit1}
+                    className="nav-link scrollto"
+                  >
+                    <i className="bx bx-log-out"></i> <span>LOGOUT</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+        </div>
+      )}
     </div>
   );
 }
