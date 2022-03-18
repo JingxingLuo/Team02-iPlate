@@ -6,13 +6,16 @@ function Navbar(props) {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/* should link to home page */}
-        <a className="navbar-brand" href="./pages/Home.jsx">
+        <div class="container">
+        <a className="navbar-brand" > {/* href="./pages/Home.jsx" */}
           <img
             className="icon"
-            src="/images/iPlate_icon.png"
+            src="assets/img/iPlate_icon.png"
             alt="iPlate-icon"
           />
+          Food Recording App!!
         </a>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -90,14 +93,14 @@ function Navbar(props) {
           </ul>
           <form className="form-inline my-2 my-lg-0">
             {/* Login button */}
-            {!props.isLogged && (
+            {/* {!props.isLogged && (
               <Link
-                to={"/"}
+                to={"/login"}
                 className="nav-link btn btn-outline-success my-2 my-sm-0 button"
               >
                 Login
               </Link>
-            )}
+            )} */}
 
             {/* Sign up! button */}
             {!props.isLogged && (
@@ -106,6 +109,16 @@ function Navbar(props) {
                 className="nav-link btn btn-outline-success my-2 my-sm-0 button"
               >
                 Sign up!
+              </Link>
+            )}
+
+            {/* LogOut button */}
+            {props.isLogged && (
+              <Link
+                to={"/"}
+                className="nav-link btn btn-outline-success my-2 my-sm-0 button"
+              >
+                Log Out
               </Link>
             )}
 

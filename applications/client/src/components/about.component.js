@@ -11,8 +11,37 @@ export default class About extends Component {
       <div>
         <Navbar />
         <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-        <header id="header" class="d-flex flex-column justify-content-center">
-          <nav id="navbar" class="navbar nav-menu"></nav>
+        <header id="header" class="d-flex flex-column justify-content-center">          
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/home" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></Link></li>
+       </ul>
+     </nav>     
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/recordFood" class="nav-link scrollto"><i class="bx bx-food-tag"></i> <span>Record</span></Link></li>
+       </ul>
+     </nav>
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/viewHistory" class="nav-link scrollto"><i class="bx bx-history"></i> <span>History</span></Link></li>
+       </ul>
+     </nav>
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/viewUserDetails" class="nav-link scrollto"><i class="bx bx-user"></i> <span>User Details</span></Link></li>
+       </ul>
+     </nav>
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/about" class="nav-link scrollto"><i class="bx bx-message-square-detail"></i> <span>About</span></Link></li>
+       </ul>
+     </nav>
+     <nav id="navbar" class="navbar nav-menu">
+       <ul>
+         <li><Link to="/faq" class="nav-link scrollto"><i class="bx bx-question-mark"></i> <span>FAQ</span></Link></li>
+       </ul>
+     </nav>
         </header>
         <section id="services" class="services">
           <div class="container" data-aos="fade-up">

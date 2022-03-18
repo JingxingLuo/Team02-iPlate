@@ -60,10 +60,10 @@ const Form = (props) => {
         {/* comfirm password -> register page */}
         {props.page === "register" && (
           <div className="form-group">
-            <Input
+            <input
               type="password"
-              id="exampleInputPassword1"
-              placeholder="comfirm password"
+              id="exampleInputPassword2"
+              placeholder="confirm password"
             />
           </div>
         )}
@@ -74,7 +74,7 @@ const Form = (props) => {
         {/*  */}
 
         {/* submit button */}
-        <button type="submit" className="btn btn-primary button">
+        <button type="submit" className="btn btn-primary button" onClick={handleSubmit}>
           {props.page === "register" ? "Sign up!" : "Login"}
         </button>
       </form>

@@ -16,7 +16,7 @@ export default class TunniUser extends Component {
           <nav id="navbar" class="navbar nav-menu">
             <ul>
               <li>
-                <Link to="/" class="nav-link scrollto">
+                <Link to="/about" class="nav-link scrollto">
                   <i class="bx bx-user"></i> <span>About</span>
                 </Link>
               </li>
