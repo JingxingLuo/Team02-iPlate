@@ -17,7 +17,7 @@ export default class MTKComponent extends Component{
                     <nav id="navbar" className="navbar nav-menu">
                         <ul>
 
-                            <li><Link to="/about" className="nav-link scrollto"><i className="bx bx-user"></i> <span>About</span></Link></li>
+                            <li><Link to="/about" className="nav-link scrollto"><i className="bx bx-left-arrow"></i> <span>Back</span></Link></li>
 
                         </ul>
                     </nav>

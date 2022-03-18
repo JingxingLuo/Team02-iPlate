@@ -10,7 +10,7 @@ import Form from "../Form";
     const [message, setMessage] = React.useState('');
     var globalVar = window.sessionStorage;
 
-    const handleSubmit = () => {
+    const handleSubmit2 = () => {
         //console.log("test",username,password);
         const body = {
             username: username,
@@ -29,40 +29,17 @@ import Form from "../Form";
             body: JSON.stringify(body),
         };
 
-            alert('HERE!')
             fetch('http://localhost:8000/users/signup', settings)
             .then((res) =>res.json()
-                 //res.json()
                 ).then((body) => {
-                    alert(body.message)
-                    console.log(body);
-                    console.log(body.isSucceed);
-                    console.log(body.message);
-                    setMessage(body.message);
-                    alert(body)
-                    // globalVar.setItem("testMessage", JSON.stringify(body.message));
-                    // globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
-                    alert(body.isSucceed)
-                    if(body.isSucceed==='true'){
-                        //alert('Successfully created!')
-                        //window.location.href = '/';
+                    if(body.isSucceed=='true'){
+                        alert('User succesfully created!!')
+                        window.location.href = '/';
                     }
                 }).catch((err)=> {
-                    // const settings = {
-                    //     method: "post",
-                    // };
-                    /**fetch('http://localhost:8000/users/fetchFailed',{method: "post"})
-                    .then((res)=>res.json())
-                    .then((body)=>{
-                        setMessage(body.message)
-                    })
-                    .catch((err)=>alert(`Double FETCH FAILED!!!`)); */
                     window.location.href='/signup';
-                    alert(err)
+                    alert(err);
                 });
-            //.then((result)=>console.log(result))
-            // .catch((err) =>console.log(err))
-        
 
     };
 
@@ -110,27 +87,13 @@ import Form from "../Form";
                         />
                     </div>
 
-
-                    {/* comfirm password -> register page
-                    {props.page === "register" && (
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                id="exampleInputPassword2"
-                                placeholder="confirm password"
-                                value={confirmPassword}
-                                onChange={(e) => setconfirmPassword(e.target.value)}
-                            />
-                        </div>
-                    )} */}
-
                     {/* divider -> register page */}
                     {props.page === "register" && <div className="dropdown-divider"></div>}
 
                     {/*  */}
 
                     {/* submit button */}
-                    <button type="submit" className="btn btn-primary button" onClick={handleSubmit}>
+                    <button type="submit" className="btn btn-primary button" onClick={handleSubmit2}>
                         {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
                         {'sign up'}
                     </button>
@@ -142,7 +105,7 @@ import Form from "../Form";
             </div>
 
 
-            {message}
+            {/* {message} */}
 
         </div>
 
