@@ -2,18 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
+  var globalVar = window.sessionStorage;
+  var isSucceed = globalVar.getItem("isSucceed");
+  var loggedname = globalVar.getItem("username");
+
+  //alert(typeof(isSucceed));
+  //alert(loggedname);
+  // const handleSubmit1 = () => {
+  //   window.location.href = 'http://www.google.com';
+  //   globalVar.removeItem("isSucceed");
+  //   globalVar.removeItem("username");
+  //   globalVar.removeItem("testMessage");
+  //   //window.location.href='www.google.com';
+
+  //   if(true){
+  //     window.location.href = 'http://www.google.com';
+  //     return (
+  //       <div>
+  //       <h1 style = {{paddingBottom:'120px'}}>Welcome back!</h1>
+  //       <div style = {{color :'lightblue', paddingBottom:'300px'}}>
+  //           Redirecting to the home page in 3 seconds..
+  //       </div>
+  //   </div>)
+  //   }
+  // }
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/* should link to home page */}
-        <div class="container">
+        <div className="container">
         <a className="navbar-brand" > {/* href="./pages/Home.jsx" */}
           <img
             className="icon"
             src="assets/img/iPlate_icon.png"
             alt="iPlate-icon"
           />
-          Food Recording App!!
+          Eat well, Live Well, Be well
+
         </a>
         </div>
         <button
@@ -103,7 +130,8 @@ function Navbar(props) {
             )} */}
 
             {/* Sign up! button */}
-            {!props.isLogged && (
+            {!isSucceed && (
+              
               <Link
                 to={"/signup"}
                 className="nav-link btn btn-outline-success my-2 my-sm-0 button"
@@ -113,14 +141,13 @@ function Navbar(props) {
             )}
 
             {/* LogOut button */}
-            {props.isLogged && (
-              <Link
-                to={"/"}
+            {/* {isSucceed && (
+              <button type= "submit"  onClick={handleSubmit1}
                 className="nav-link btn btn-outline-success my-2 my-sm-0 button"
               >
                 Log Out
-              </Link>
-            )}
+              </button>
+            )} */}
 
             {/* My Account button */}
             {props.isLogged && (

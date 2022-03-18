@@ -26,17 +26,24 @@ const Form =(props) => {
 
     if(password === confirmPassword)
     console.log('Password matched!');
-
-
     fetch('http://localhost:8000/users/login', settings)
     .then((res)=>res.json())
     .then(body => {
       console.log(body);
       console.log(body.isSucceed);
+      //alert(body.username);
       console.log(body.message);
       setMessage(body.message);
-      globalVar.setItem("testMessage", JSON.stringify(body.message));
+      
+      globalVar.setItem("username", JSON.stringify(body.username));
+      //globalVar.setItem("testMessage", JSON.stringify(body.message));
       globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
+      if(body.isSucceed===true){
+        //alert('Successfully created!')
+        window.location.href = '/about';
+    }else{
+      alert(body.message);
+    }
     });
     //.then((result)=>console.log(result))
    // .catch((err) =>console.log(err))
@@ -96,7 +103,7 @@ const Form =(props) => {
           {props.page === "register" ? "Sign up!" : "Login"}
         </button>
         <div>
-          {message}
+          {/* {message} */}
         </div>
       </form>
     </div>

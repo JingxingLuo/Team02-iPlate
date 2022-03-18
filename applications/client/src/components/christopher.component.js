@@ -8,13 +8,13 @@ export default class ChristopherUser extends Component{
 render() {
     return (
         <div>
-        <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button>
-        <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-        <header id="header" class="d-flex flex-column justify-content-center">
+        <button type="button" className="mobile-nav-toggle d-xl-none"><i className="bi bi-list mobile-nav-toggle"></i></button>
+        <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
+        <header id="header" className="d-flex flex-column justify-content-center">
         
-         <nav id="navbar" class="navbar nav-menu">
+         <nav id="navbar" className="navbar nav-menu">
            <ul>
-             <li><Link to="/about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></Link></li>
+             <li><Link to="/about" className="nav-link scrollto"><i className="bx bx-user"></i> <span>About</span></Link></li>
            </ul>
          </nav>
         
@@ -22,36 +22,36 @@ render() {
         
         <main id="main">
         
-        <section id="about" class="about">
-      <div class="container">
+        <section id="about" className="about">
+      <div className="container">
 
-        <div class="section-title">
+        <div className="section-title">
           <h2>Christopher Ling</h2>
         </div>
 
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/portfolio/christopher_icon.jpg" class="img-fluid" alt="" />
+        <div className="row">
+          <div className="col-lg-4">
+            <img src="assets/img/portfolio/christopher_icon.jpg" className="img-fluid" alt="" />
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content">
+          <div className="col-lg-8 pt-4 pt-lg-0 content">
             <h3>Front-end Support</h3>
-            <p class="fst-italic">
+            <p className="fst-italic">
 				I'm part of the CSC-648 section 01 team 02 web development collaboration
 				that is building an app to promote healthy habits.
             </p>
-            <div class="row">
-              <div class="col-lg-6">
+            <div className="row">
+              <div className="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>26 September 1992</span></li>
-				  <li><i class="bi bi-chevron-right"></i> <strong>Place:</strong> <span>California</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Oakland</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>26 September 1992</span></li>
+				  <li><i className="bi bi-chevron-right"></i> <strong>Place:</strong> <span>California</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>City:</strong> <span>Oakland</span></li>
                 </ul>
               </div>
-              <div class="col-lg-6">
+              <div className="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>29</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree Pursuing:</strong> <span>Bachelor</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>cling1@mail.sfsu.edu</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>29</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Degree Pursuing:</strong> <span>Bachelor</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <span>cling1@mail.sfsu.edu</span></li>
                 </ul>
               </div>
             </div>

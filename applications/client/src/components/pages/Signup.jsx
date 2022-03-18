@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Form from "../Form";
 //import { Link } from "react-router-dom";
 
-const Signup =(props) => {
+  const Signup =(props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPassword,setconfirmPassword]=React.useState('');
@@ -15,6 +15,7 @@ const Signup =(props) => {
         const body = {
             username: username,
             password: password,
+            confirmPassword: confirmPassword
         };
         //console.log(body);
         const settings = {
@@ -22,15 +23,15 @@ const Signup =(props) => {
             headers: {
                 //'Content-Type': 'application/json',
                 "Content-Type": "application/x-www-form-urlencoded",
+                //"Access-Control-Allow-Origin": *
                 //"Content-Type": "text/plain"
             },
             body: JSON.stringify(body),
         };
 
-        if (password === confirmPassword) {
             alert('HERE!')
             fetch('http://localhost:8000/users/signup', settings)
-                .then((res) =>res.json()
+            .then((res) =>res.json()
                  //res.json()
                 ).then((body) => {
                     alert(body.message)
@@ -44,14 +45,24 @@ const Signup =(props) => {
                     alert(body.isSucceed)
                     if(body.isSucceed==='true'){
                         //alert('Successfully created!')
-                        //window.location.href = '/login';
+                        //window.location.href = '/';
                     }
-                }).catch((err)=> alert(err));
+                }).catch((err)=> {
+                    // const settings = {
+                    //     method: "post",
+                    // };
+                    fetch('http://localhost:8000/users/fetchFailed',{method: "post"})
+                    .then((res)=>res.json())
+                    .then((body)=>{
+                        setMessage(body.message)
+                    })
+                    .catch((err)=>alert(`Double FETCH FAILED!!!`));
+                    window.location.href='/signup';
+                    alert(err)
+                });
             //.then((result)=>console.log(result))
             // .catch((err) =>console.log(err))
-        }else{
-            alert('Password did not match, please enter same password');
-        }
+        
 
     };
 
@@ -62,7 +73,7 @@ const Signup =(props) => {
 
             <div className="form-container">
                 {/* form title */}
-                <h2 className="form-title">Welcome back!</h2>
+                <h2 className="form-title">Welcome to iPlate!</h2>
 
                 <form>
                     {/* username */}
@@ -127,10 +138,11 @@ const Signup =(props) => {
                         {message}
                     </div>
                 </form>
+                
             </div>
 
 
-
+            {message}
 
         </div>
 
