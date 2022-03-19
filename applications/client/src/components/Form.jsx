@@ -38,70 +38,70 @@ const Form = (props) => {
   };
 
   return (
-    <div className="container form-container" data-aos="fade-up">
-      <div className="section-title">
-        <h2 className="form-title">
-          {props.page === "login" ? "Welcome back!" : "Hello there!"}
-        </h2>
-      </div>
+    // <div className="container form-container" data-aos="fade-up">
+    //   <div className="section-title">
+    //     <h2 className="form-title">
+    //       {props.page === "login" ? "Welcome back!" : "Hello there!"}
+    //     </h2>
+    //   </div>
 
-      <form action="forms/contact.php" method="post" className="php-email-form">
-        {/* username */}
-        <div className="form-group mt-3 input-container">
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            id="exampleInputEmail1"
-            placeholder="username / email"
-            autoFocus
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+    //   <form action="forms/contact.php" method="post" className="php-email-form">
+    //     {/* username */}
+    //     <div className="form-group mt-3 input-container">
+    //       <input
+    //         type="text"
+    //         className="form-control"
+    //         name="username"
+    //         id="exampleInputEmail1"
+    //         placeholder="username / email"
+    //         autoFocus
+    //         required
+    //         value={username}
+    //         onChange={(e) => setUsername(e.target.value)}
+    //       />
+    //     </div>
 
-        {/* password */}
-        <div className="form-group mt-3  input-container">
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            id="exampleInputPassword1"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+    //     {/* password */}
+    //     <div className="form-group mt-3  input-container">
+    //       <input
+    //         type="password"
+    //         className="form-control"
+    //         name="password"
+    //         id="exampleInputPassword1"
+    //         placeholder="password"
+    //         value={password}
+    //         onChange={(e) => setPassword(e.target.value)}
+    //         required
+    //       />
+    //     </div>
 
-        {/* comfirm password -> register page */}
-        {props.page === "register" && (
-          <div className="form-group">
-            <input
-              type="password"
-              id="exampleInputPassword2"
-              placeholder="confirm password"
-              value={confirmPassword}
-              onChange={(e) => setconfirmPassword(e.target.value)}
-            />
-          </div>
-        )}
+    //     {/* comfirm password -> register page */}
+    //     {props.page === "register" && (
+    //       <div className="form-group">
+    //         <input
+    //           type="password"
+    //           id="exampleInputPassword2"
+    //           placeholder="confirm password"
+    //           value={confirmPassword}
+    //           onChange={(e) => setconfirmPassword(e.target.value)}
+    //         />
+    //       </div>
+    //     )}
 
-        {/* divider -> register page */}
-        {props.page === "register" && <div className="dropdown-divider"></div>}
+    //     {/* divider -> register page */}
+    //     {props.page === "register" && <div className="dropdown-divider"></div>}
 
-        {/* submit button */}
-        <button
-          type="submit"
-          className="btn btn-primary button"
-          onClick={handleSubmit}
-        >
-          {props.page === "register" ? "Sign up!" : "Login"}
-        </button>
-        <div>{/* {message} */}</div>
-      </form>
-    </div>
+    //     {/* submit button */}
+    //     <button
+    //       type="submit"
+    //       className="btn btn-primary button"
+    //       onClick={handleSubmit}
+    //     >
+    //       {props.page === "register" ? "Sign up!" : "Login"}
+    //     </button>
+    //     <div>{/* {message} */}</div>
+    //   </form>
+    // </div>
     // <div className="form-container">
     //   {/* form title */}
     //   <h2 className="form-title">
@@ -155,6 +155,56 @@ const Form = (props) => {
     //     </button>
     //   </form>
     // </div>
+    <div className="form-container">
+      {/* form title */}
+      <h2 className="form-title">Welcome back!</h2>
+      <form>
+        {/* username */}
+        <div className="form-group form-entry">
+          <input
+            type="text"
+            id="exampleInputEmail1"
+            placeholder="email / username"
+            required
+            autoFocus
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        {/* password */}
+        <div className="form-group">
+          <input
+            type="password"
+            id="exampleInputPassword1"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {/* comfirm password -> register page */}
+        {props.page === "register" && (
+          <div className="form-group">
+            <input
+              type="password"
+              id="exampleInputPassword2"
+              placeholder="confirm password"
+              value={confirmPassword}
+              onChange={(e) => setconfirmPassword(e.target.value)}
+            />
+          </div>
+        )}
+        {/* divider -> register page */}
+        {props.page === "register" && <div className="dropdown-divider"></div>}
+        {/*  */}
+        {/* submit button */}
+        <button type="submit" className="btn btn-primary button" onClick={handleSubmit}>
+          {props.page === "register" ? "Sign up!" : "Login"}
+        </button>
+        <div>
+          {/* {message} */}
+        </div>
+      </form>
+    </div>
   );
 };
 

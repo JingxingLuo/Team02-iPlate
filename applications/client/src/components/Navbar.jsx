@@ -27,7 +27,10 @@ function Navbar(props) {
           </a>
         </div>
         <div className="flex-center">
-          <h3 className="navbar-quote">Eat well, Live Well, Be well</h3>
+          <p>
+          <h3 className="navbar-quote text-center text-secondary">iPlate- A Food Recording App </h3>
+          <i><h5 className="navbar-quote text-center text-muted">"Eat well, Live Well, Be well"</h5></i>
+          </p>
         </div>
         <button
           className="navbar-toggler"

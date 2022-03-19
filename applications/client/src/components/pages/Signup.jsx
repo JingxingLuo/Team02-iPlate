@@ -32,7 +32,7 @@ import Form from "../Form";
             fetch('http://localhost:8000/users/signup', settings)
             .then((res) =>res.json()
                 ).then((body) => {
-                    if(body.isSucceed=='true'){
+                    if(body.isSucceed==true){
                         alert('User succesfully created!!')
                         window.location.href = '/';
                     }
