@@ -9,6 +9,12 @@ import Form from "../Form";
     const [message, setMessage] = React.useState('');
     var globalVar = window.sessionStorage;
 
+    //alert(typeof(globalVar.isSucceed));
+    if(globalVar.isSucceed=="true")
+    {
+      window.location.href = '/about';
+    }
+
     const handleSubmit2 = () => {
         //console.log("test",username,password);
         const body = {
@@ -33,17 +39,18 @@ import Form from "../Form";
                   //alert(body.isSucceed);
                     if(body.isSucceed==true){
                       globalVar.setItem("username", JSON.stringify(body.username));
+                      alert("This is the branch");
                       globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
                       //alert('!!')
-                      window.location.href = '/about';
+                      
                     }
                     else{
                       alert(body.message);
                     }
                 }).catch((err)=> {
-                    
+                  alert(err);
                     window.location.href='/signup';
-                    alert(err);
+                    
                 });
 
     };
@@ -83,7 +90,7 @@ import Form from "../Form";
                     </div>
 
                     {/* divider -> register page */}
-                    {props.page === "register" && <div className="dropdown-divider"></div>}
+                    {/* {props.page === "register" && <div className="dropdown-divider"></div>} */}
 
                     {/*  */}
 
