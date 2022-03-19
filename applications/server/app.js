@@ -107,7 +107,7 @@ app.post('/users/signup', (req, res, next) => {
 
 
             db.collection("test").findOne({ name: `${TargetUsername}` }, function (err, result) {
-
+                console.log(result);
                 if (err) throw err;
                 if(result)
                 {

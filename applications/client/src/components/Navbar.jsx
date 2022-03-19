@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import image from "../";
+// import image from "../";
 
 function Navbar(props) {
   var globalVar = window.sessionStorage;
   var isSucceed = globalVar.getItem("isSucceed");
-  var loggedname = globalVar.getItem("username");
+  // var loggedname = globalVar.getItem("username");
 
   const handleSubmit1 = () => {
     globalVar.removeItem("isSucceed");
@@ -16,7 +16,7 @@ function Navbar(props) {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="navbar-container">
-          <a className="navbar-brand">
+          <a className="navbar-brand" href="/about">
             {" "}
             {/* href="./pages/Home.jsx" */}
             <img
@@ -27,10 +27,10 @@ function Navbar(props) {
           </a>
         </div>
         <div className="flex-center">
-          <p>
+          {/* <p> */}
           <h3 className="navbar-quote text-center text-secondary">iPlate- A Food Recording App </h3>
           <i><h5 className="navbar-quote text-center text-muted">"Eat well, Live Well, Be well"</h5></i>
-          </p>
+          {/* </p> */}
         </div>
         <button
           className="navbar-toggler"

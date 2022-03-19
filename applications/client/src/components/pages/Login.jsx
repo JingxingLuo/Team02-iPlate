@@ -1,16 +1,16 @@
 import React from "react";
 import Navbar from "../Navbar";
-import Form from "../Form";
+// import Form from "../Form";
 //import { Link } from "react-router-dom";
 
   const Login =(props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [message, setMessage] = React.useState('');
+    // const [message, setMessage] = React.useState('');
     var globalVar = window.sessionStorage;
 
     //alert(typeof(globalVar.isSucceed));
-    if(globalVar.isSucceed=="true")
+    if(globalVar.isSucceed==="true")
     {
       window.location.href = '/about';
     }
@@ -37,9 +37,9 @@ import Form from "../Form";
             .then((res) =>res.json()
                 ).then((body) => {
                   //alert(body.isSucceed);
-                    if(body.isSucceed==true){
+                    if(body.isSucceed===true){
                       globalVar.setItem("username", JSON.stringify(body.username));
-                      alert("This is the branch");
+                    //   alert("This is the branch");
                       globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
                       //alert('!!')
                       
@@ -100,7 +100,7 @@ import Form from "../Form";
                         {'Log in'}
                     </button>
                     <div>
-                        {message}
+                        {/* {message} */}
                     </div>
                 </form>
                 

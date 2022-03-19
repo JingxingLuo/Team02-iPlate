@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "../Navbar";
-import Form from "../Form";
+// import Form from "../Form";
 //import { Link } from "react-router-dom";
 
   const Signup =(props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPassword,setconfirmPassword]=React.useState('');
-    const [message, setMessage] = React.useState('');
-    var globalVar = window.sessionStorage;
+    // const [message, setMessage] = React.useState('');
+    // var globalVar = window.sessionStorage;
     const [jump, setJump] = React.useState(false);
 
     //alert("JUMP" +  typeof(jump));
@@ -40,10 +40,16 @@ import Form from "../Form";
             fetch('http://localhost:8000/users/signup', settings)
             .then((res) =>res.json()
                 ).then((body) => {
-                    if(body.isSucceed==true){
+                    // alert(typeof(body.isSucceed));
+                    if(body.isSucceed==="true"){
                         alert('User succesfully created!!')
                         setJump(true);
                         window.location.href = '/';
+                    }
+                    else{
+                            alert(body.message);
+                            setJump(false);
+                            window.location.href = '/signup';
                     }
                 }).catch((err)=> {
                     window.location.href='/signup';
@@ -107,7 +113,7 @@ import Form from "../Form";
                         {'sign up'}
                     </button>
                     <div>
-                        {message}
+                        {/* {message} */}
                     </div>
                 </form>
                 
