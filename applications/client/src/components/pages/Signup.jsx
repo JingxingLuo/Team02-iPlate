@@ -9,6 +9,14 @@ import Form from "../Form";
     const [confirmPassword,setconfirmPassword]=React.useState('');
     const [message, setMessage] = React.useState('');
     var globalVar = window.sessionStorage;
+    const [jump, setJump] = React.useState(false);
+
+    //alert("JUMP" +  typeof(jump));
+    if(jump)
+    {
+        window.location.href = '/about';
+    }
+
 
     const handleSubmit2 = () => {
         //console.log("test",username,password);
@@ -34,6 +42,7 @@ import Form from "../Form";
                 ).then((body) => {
                     if(body.isSucceed==true){
                         alert('User succesfully created!!')
+                        setJump(true);
                         window.location.href = '/';
                     }
                 }).catch((err)=> {
