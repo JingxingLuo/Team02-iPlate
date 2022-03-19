@@ -16,6 +16,7 @@ import Jingxing from "./components/jingxing.component";
 import AungUser from "./components/akm.component";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
+import Contact from "./components/pages/Contact";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/" exact element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
     );
