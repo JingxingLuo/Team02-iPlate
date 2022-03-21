@@ -33,7 +33,7 @@ import Navbar from "../Navbar";
             body: JSON.stringify(body),
         };
 
-            fetch('http://localhost:8000/users/login', settings)
+            fetch('/api/login', settings)
             .then((res) =>res.json()
                 ).then((body) => {
                   //alert(body.isSucceed);
@@ -42,6 +42,7 @@ import Navbar from "../Navbar";
                     //   alert("This is the branch");
                       globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
                       //alert('!!')
+                      window.location.href = '/about';
                       
                     }
                     else{
@@ -95,7 +96,7 @@ import Navbar from "../Navbar";
                     {/*  */}
 
                     {/* submit button */}
-                    <button type="submit" className="btn btn-primary button" onClick={handleSubmit2}>
+                    <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
                         {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
                         {'Log in'}
                     </button>
