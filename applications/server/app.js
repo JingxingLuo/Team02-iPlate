@@ -12,6 +12,14 @@ app.listen(8000, () => {
     console.log("TEST express")
 })
 
+app.post("/api/",(req,res,next) =>  {
+    console.log(req.body);
+    console.log("This is trigged!");
+    //res.header("Access-Control-Allow-Headers", "*");
+    res.status(200).send("ASDASAADSDSD");
+
+})
+
 var db;
 
 MongoClient.connect(fact)
@@ -24,8 +32,8 @@ MongoClient.connect(fact)
        console.log(err);
     })
 
-app.post('/users/login', (req, res, next) => {
-
+app.post('/api/login', (req, res, next) => {
+    console.log("login trigged");
     var temp = req.body;
     let temp_string=[];
 
@@ -51,11 +59,11 @@ app.post('/users/login', (req, res, next) => {
             {
                 if(result.password === `${TargetPassword}`){
                     console.log(`user password matched!`);
-                    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                    res.header("Access-Control-Allow-Origin", "http://localhost:80");
                     res.header("Access-Control-Allow-Headers", "*");
                     res.send({"isSucceed":true, "message": "Logged in!!", "username":`${TargetUsername}`});
                 }else{
-                    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                    res.header("Access-Control-Allow-Origin", "http://localhost:80");
                     res.header("Access-Control-Allow-Headers", "*");
                     console.log(`password in failed!`);
                     res.send({"isSucceed":false, "message": "Password is wrong!!"} );
@@ -63,7 +71,7 @@ app.post('/users/login', (req, res, next) => {
                 }
 
             }else{
-                res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                res.header("Access-Control-Allow-Origin", "http://localhost:80");
                 res.header("Access-Control-Allow-Headers", "*");
                 console.log('USER NAME NOT MATCHED')
                 res.send({"isSucceed":false, "message": "Can not find the user!"});
@@ -75,8 +83,8 @@ app.post('/users/login', (req, res, next) => {
 var delete_name=null;
 
 
-app.post('/users/signup', (req, res, next) => {
-
+app.post('/api/signup', (req, res, next) => {
+    console.log("signup trigged");
     var temp = req.body;
     let temp_string=[];
     console.log(temp);
@@ -99,7 +107,7 @@ app.post('/users/signup', (req, res, next) => {
     }
     
             if((TargetPassword!=Target_confirmpassword)){
-                res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                res.header("Access-Control-Allow-Origin", "http://localhost:80");
                 res.header("Access-Control-Allow-Headers", "*");
                 res.status(200).send({"isSucceed":"false", "message": "Password and confirmPassword does not match!!"});
                 
@@ -112,7 +120,7 @@ app.post('/users/signup', (req, res, next) => {
                 if(result)
                 {
                     console.log('User already exists');
-                    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+                    res.header("Access-Control-Allow-Origin", "http://localhost:80");
                     res.header("Access-Control-Allow-Headers", "*");
                     res.status(200).send({"isSucceed":"false", "message": "User already exists"});
                     

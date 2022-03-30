@@ -37,7 +37,7 @@ import Navbar from "../Navbar";
             body: JSON.stringify(body),
         };
 
-            fetch('http://localhost:8000/users/signup', settings)
+            fetch('/api/signup', settings)
             .then((res) =>res.json()
                 ).then((body) => {
                     // alert(typeof(body.isSucceed));
@@ -108,7 +108,7 @@ import Navbar from "../Navbar";
                     {/*  */}
 
                     {/* submit button */}
-                    <button type="submit" className="btn btn-primary button" onClick={handleSubmit2}>
+                    <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
                         {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
                         {'sign up'}
                     </button>
