@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import image from "../";
 
 function Navbar(props) {
   var globalVar = window.sessionStorage;
   var isSucceed = globalVar.getItem("isSucceed");
-  // var loggedname = globalVar.getItem("username");
 
   const handleSubmit1 = () => {
     globalVar.removeItem("isSucceed");
@@ -16,9 +14,8 @@ function Navbar(props) {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="navbar-container">
-          <a className="navbar-brand" href="/about">
+          <a className="navbar-brand">
             {" "}
-            {/* href="./pages/Home.jsx" */}
             <img
               className="icon"
               src="assets/img/iPlate_icon.png"
@@ -27,10 +24,8 @@ function Navbar(props) {
           </a>
         </div>
         <div className="flex-center">
-          {/* <p> */}
           <h3 className="navbar-quote text-center text-secondary">iPlate- A Food Recording App </h3>
           <i><h5 className="navbar-quote text-center text-muted">"Eat well, Live Well, Be well"</h5></i>
-          {/* </p> */}
         </div>
         <button
           className="navbar-toggler"
@@ -43,18 +38,6 @@ function Navbar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        {/* Sign up! button */}
-        {!isSucceed && (
-          <div className="nav-a">
-            <Link
-              to={"/signup"}
-              className="btn btn-outline-success my-2 my-sm-0 button"
-            >
-              Sign up!
-            </Link>
-          </div>
-        )}
       </nav>
       {isSucceed && (
         <div>
@@ -75,7 +58,7 @@ function Navbar(props) {
             <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>
-                  <Link to="/recordFood" className="nav-link scrollto">
+                  <Link to="/FoodRecord" className="nav-link scrollto">
                     <i className="bx bx-food-tag"></i> <span>Record</span>
                   </Link>
                 </li>

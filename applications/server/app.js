@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-app.listen(8000, () => {
+app.listen(80, () => {
     console.log("TEST express")
 })
 
