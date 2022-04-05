@@ -9,16 +9,65 @@ import Dropdown from "react-bootstrap/Dropdown";
 import FoodOptionsCard from "../FoodOptionsCard";
 Chart.register(ArcElement);
 
+let foods = [
+  ["Broccoli", "Cabbage", "Spinach", "Kale", "Cauliflower", "Bok Choi"],
+  [
+    "Apple",
+    "Orange",
+    "Strawberry",
+    "Watermelon",
+    "Banana",
+    "Grapes",
+    "Grape Fruit",
+    "Cherry",
+  ],
+  ["Rice", "Potato", "Sweet Potato", "Corn", "Noodles", "Pasta", "Bread"],
+  ["Chicken", "Beef", "Turkey", "Eggs", "Tofu", "Tempeh", "Paneer", "Salmon"],
+];
+
 const FoodRecord = (props) => {
   // testing
-  let veggies = [
-    "Broccoli",
-    "Cabbage",
-    "Spinach",
-    "Kale",
-    "Cauliflower",
-    "Bok Choi",
-  ];
+
+  // let veggie = [
+  //   "Broccoli",
+  //   "Cabbage",
+  //   "Spinach",
+  //   "Kale",
+  //   "Cauliflower",
+  //   "Bok Choi",
+  // ];
+
+  // let fruits = [
+  //   "Apple",
+  //   "Orange",
+  //   "Strawberry",
+  //   "Watermelon",
+  //   "Banana",
+  //   "Grapes",
+  //   "Grape Fruit",
+  //   "Cherry",
+  // ];
+
+  // let carbs = [
+  //   "Rice",
+  //   "Potato",
+  //   "Sweet Potato",
+  //   "Corn",
+  //   "Noodles",
+  //   "Pasta",
+  //   "Bread",
+  // ];
+
+  // let protein = [
+  //   "Chicken",
+  //   "Beef",
+  //   "Turkey",
+  //   "Eggs",
+  //   "Tofu",
+  //   "Tempeh",
+  //   "Paneer",
+  //   "Salmon",
+  // ];
 
   const [startDate, setStartDate] = React.useState(new Date());
 
@@ -26,6 +75,11 @@ const FoodRecord = (props) => {
     labels: [],
     data: [],
   });
+
+  // search how to have "placeholder" for props value
+  const [foodGroupLabel, setFoodGroupLabel] = React.useState("");
+
+  const [foodLabelIndex, setFoodLabelIndex] = React.useState(0);
 
   const chartRef = useRef();
 
@@ -141,12 +195,16 @@ const FoodRecord = (props) => {
               onClick={(event, element) => {
                 const index = getElementAtEvent(chartRef.current, event)[0]
                   .index;
-                console.log(graphData[index].label);
+                setFoodLabelIndex(index);
+                setFoodGroupLabel(graphData[index].label);
               }}
             />
           </div>
           {/* here foodGroupName and foods should be default(placeholder) like Food Options & list of all foods in our db */}
-          <FoodOptionsCard foodGroupName="Veggies" foods={veggies} />
+          <FoodOptionsCard
+            foodGroupName={foodGroupLabel}
+            foods={foods[foodLabelIndex]}
+          />
         </div>
       </div>
     </div>

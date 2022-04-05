@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/esm/Button";
 
 let veggies = [
   "Broccoli",
@@ -9,24 +10,37 @@ let veggies = [
   "Bok Choi",
 ];
 
-function onClick(event) {
-  console.log(event.target.textContent);
-}
-
 function createFoodOption(foodName) {
   return (
     <tr>
-      <td onClick={onClick}>{foodName}</td>
+      <td>{foodName}</td>
+      <td>
+        <input />
+      </td>
+      <td>
+        <Button
+          onClick={(event) => {
+            console.log(event.target.textContent);
+          }}
+        >
+          click me
+        </Button>
+      </td>
     </tr>
   );
 }
 
 function FoodGroupCard(props) {
   return (
-    <div className="food-options">
-      <nav id="navbar-example2" className="navbar navbar-light bg-light px-3">
-        <h3 className="navbar-brand">{props.foodGroupName}</h3>
-        <form className="form-inline my-2 my-lg-0">
+    <>
+      {props.foodGroupName && (
+        <div className="food-options">
+          <nav
+            id="navbar-example2"
+            className="navbar navbar-light bg-light px-3"
+          >
+            <h3 className="navbar-brand">{props.foodGroupName}</h3>
+            {/* <form className="form-inline my-2 my-lg-0">
           <input
             className="form-control mr-sm-2"
             type="search"
@@ -35,18 +49,29 @@ function FoodGroupCard(props) {
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
+            onClick={(ev) => {
+              ev.preventDefault();
+            }}
           >
             Search
           </button>
-        </form>
-      </nav>
-      <div className="scrollable">
-        <table className="table">
-          <tbody>{props.foods.map(createFoodOption)}</tbody>
-        </table>
-      </div>
-    </div>
+        </form> */}
+          </nav>
+          <div className="scrollable">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Food Name</th>
+                  <th scope="col">Amount (g)</th>
+                  <th scope="col">Record</th>
+                </tr>
+              </thead>
+              <tbody>{props.foods.map(createFoodOption)}</tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
