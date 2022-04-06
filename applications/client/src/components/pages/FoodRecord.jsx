@@ -193,10 +193,12 @@ const FoodRecord = (props) => {
               ref={chartRef}
               data={data}
               onClick={(event, element) => {
-                const index = getElementAtEvent(chartRef.current, event)[0]
-                  .index;
+                const temp_index = getElementAtEvent(chartRef.current, event)[0]
+                if(temp_index){
+                const index=temp_index.index;
                 setFoodLabelIndex(index);
                 setFoodGroupLabel(graphData[index].label);
+                }
               }}
             />
           </div>
