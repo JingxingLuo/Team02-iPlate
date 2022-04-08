@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/esm/Button";
 
-let veggies = [
-  "Broccoli",
-  "Cabbage",
-  "Spinach",
-  "Kale",
-  "Cauliflower",
-  "Bok Choi",
-];
+// let veggies = [
+//   "Broccoli",
+//   "Cabbage",
+//   "Spinach",
+//   "Kale",
+//   "Cauliflower",
+//   "Bok Choi",
+// ];
 
-function createFoodOption(foodName) {
-  return (
-    <tr>
-      <td>{foodName}</td>
-      <td>
-        <input />
-      </td>
-      <td>
-        <Button
-          onClick={(event) => {
-            console.log(event.target.textContent);
-          }}
-        >
-          click me
-        </Button>
-      </td>
-    </tr>
-  );
-}
+// function createFoodOption(foodName, index) {
+//   return (
+//     <tr>
+//       <td>{foodName}</td>
+//       <td>
+//         <input id={index} />
+//       </td>
+//       <td>
+//         <Button
+//           onClick={(event) => {
+//             console.log(event.target);
+//           }}
+//         >
+//           click me
+//         </Button>
+//       </td>
+//     </tr>
+//   );
+// }
 
 function FoodGroupCard(props) {
   return (
@@ -40,22 +40,6 @@ function FoodGroupCard(props) {
             className="navbar navbar-light bg-light px-3"
           >
             <h3 className="navbar-brand">{props.foodGroupName}</h3>
-            {/* <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            onClick={(ev) => {
-              ev.preventDefault();
-            }}
-          >
-            Search
-          </button>
-        </form> */}
           </nav>
           <div className="scrollable">
             <table className="table">
@@ -66,7 +50,83 @@ function FoodGroupCard(props) {
                   <th scope="col">Record</th>
                 </tr>
               </thead>
-              <tbody>{props.foods.map(createFoodOption)}</tbody>
+              <tbody>
+                {props.foods.map((food, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{food}</td>
+                      <td>
+                        <input id={index} />
+                      </td>
+                      <td>
+                        <Button
+                          //   onClick={(event) => {
+                          //     //   push food: amount(value)
+                          //     // console.log(
+                          //     //   food,
+                          //     //   document.getElementById(index).value
+                          //     // );
+                          //     const amount = document.getElementById(index).value;
+                          //     if (amount !== "") {
+                          //       console.log(
+                          //         "pushing ",
+                          //         food,
+                          //         ": ",
+                          //         amount,
+                          //         " to ",
+                          //         props.foodGroupLabel
+                          //       );
+                          //       switch (props.foodGroupLabel) {
+                          //         case "Veggie":
+                          //           props.returnValue.Veggie.push({
+                          //             food: amount,
+                          //           });
+                          //           console.log(props.returnValue.Veggie);
+                          //           break;
+                          //         case "Fruits":
+                          //           console.log(props.returnValue.Veggie);
+                          //           break;
+                          //         case "Carbs":
+                          //           console.log(props.returnValue.Carbs);
+                          //           break;
+                          //         case "Protein":
+                          //           console.log(props.returnValue.Protein);
+                          //       }
+                          //       //   console.log("returnFoods: ", props.returnFoods);
+                          //     }
+                          //   }}
+
+                          //   onClick={() => {
+                          //     props.setReturnFoods((prev) => {
+                          //       prev.Veggie.push({ cabbage: 200 });
+                          //       console.log(
+                          //         "from food options card prev: ",
+                          //         prev
+                          //       );
+                          //       console.log(
+                          //         "from food options card return json: ",
+                          //         props.returnFoods
+                          //       );
+                          //     });
+                          //   }}
+
+                          //   onClick={props.setReturnFoods}
+                          onClick={() => {
+                            const amount = document.getElementById(index).value;
+                            props.setReturnFoods(
+                              props.foodGroupName,
+                              food,
+                              amount
+                            );
+                          }}
+                        >
+                          click me
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
         </div>

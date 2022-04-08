@@ -7,6 +7,8 @@ import { Pie, getElementAtEvent, getDatasetAtEvent } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import FoodOptionsCard from "../FoodOptionsCard";
+import Button from "react-bootstrap/esm/Button";
+
 Chart.register(ArcElement);
 
 let foods = [
@@ -25,49 +27,10 @@ let foods = [
   ["Chicken", "Beef", "Turkey", "Eggs", "Tofu", "Tempeh", "Paneer", "Salmon"],
 ];
 
+var globalVar = window.sessionStorage;
+
 const FoodRecord = (props) => {
   // testing
-
-  // let veggie = [
-  //   "Broccoli",
-  //   "Cabbage",
-  //   "Spinach",
-  //   "Kale",
-  //   "Cauliflower",
-  //   "Bok Choi",
-  // ];
-
-  // let fruits = [
-  //   "Apple",
-  //   "Orange",
-  //   "Strawberry",
-  //   "Watermelon",
-  //   "Banana",
-  //   "Grapes",
-  //   "Grape Fruit",
-  //   "Cherry",
-  // ];
-
-  // let carbs = [
-  //   "Rice",
-  //   "Potato",
-  //   "Sweet Potato",
-  //   "Corn",
-  //   "Noodles",
-  //   "Pasta",
-  //   "Bread",
-  // ];
-
-  // let protein = [
-  //   "Chicken",
-  //   "Beef",
-  //   "Turkey",
-  //   "Eggs",
-  //   "Tofu",
-  //   "Tempeh",
-  //   "Paneer",
-  //   "Salmon",
-  // ];
 
   const [startDate, setStartDate] = React.useState(new Date());
 
@@ -75,6 +38,30 @@ const FoodRecord = (props) => {
     labels: [],
     data: [],
   });
+
+  const [returnFoods, setReturnFoods] = React.useState({
+    Veggie: [],
+    Fruits: [],
+    Carbs: [],
+    Protein: [],
+  });
+
+  const [returnMealType, setReturnMealType] =
+    React.useState("Choose your meal");
+
+  function updateJSON(foodGroups, newFood, newFoodAmount) {
+    if (newFoodAmount !== "") {
+      setReturnFoods((prev) => {
+        prev[foodGroups].push({ [newFood]: parseInt(newFoodAmount, 10) });
+        console.log("prev: ", prev);
+        return prev;
+      });
+    }
+  }
+
+  function updateMealType(event) {
+    setReturnMealType(event.target.textContent);
+  }
 
   // search how to have "placeholder" for props value
   const [foodGroupLabel, setFoodGroupLabel] = React.useState("");
@@ -152,11 +139,11 @@ const FoodRecord = (props) => {
       <div className="container" data-aos="fade-up">
         <div className="section-title">
           <div className="row">
-            <div class="col align-self-start">
+            <div className="col align-self-start">
               <h2>My Plate for: </h2>
             </div>
             {/* Date for recording */}
-            <div class="col align-self-start">
+            <div className="col align-self-start">
               <DatePicker
                 id="dateOfRecord"
                 popperPlacement="bottom"
@@ -165,24 +152,43 @@ const FoodRecord = (props) => {
               />
             </div>
             {/* DropDown for meal */}
-            <div class="col align-self-start">
+            <div className="col align-self-start">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {returnMealType}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={updateMealType}>
+                    Breakfast
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={updateMealType}>Lunch</Dropdown.Item>
+                  <Dropdown.Item onClick={updateMealType}>Dinner</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+            {/* <div className="col align-self-start">
               <Dropdown>
                 <Dropdown.Toggle
                   id="dropdown-button-light-example1"
                   variant="secondary"
                 >
-                  Choose your meal
+                  {returnMealType}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu variant="dark">
-                  <Dropdown.Item href="#/action-1" active>
+                  <Dropdown.Item
+                    onClick={updateMealType}
+                    href="#/action-1"
+                    active
+                  >
                     Breakfast
                   </Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Lunch</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Dinner</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="food-record-main">
@@ -193,11 +199,14 @@ const FoodRecord = (props) => {
               ref={chartRef}
               data={data}
               onClick={(event, element) => {
-                const temp_index = getElementAtEvent(chartRef.current, event)[0]
-                if(temp_index){
-                const index=temp_index.index;
-                setFoodLabelIndex(index);
-                setFoodGroupLabel(graphData[index].label);
+                const temp_index = getElementAtEvent(
+                  chartRef.current,
+                  event
+                )[0];
+                if (temp_index) {
+                  const index = temp_index.index;
+                  setFoodLabelIndex(index);
+                  setFoodGroupLabel(graphData[index].label);
                 }
               }}
             />
@@ -206,8 +215,56 @@ const FoodRecord = (props) => {
           <FoodOptionsCard
             foodGroupName={foodGroupLabel}
             foods={foods[foodLabelIndex]}
+            returnFoods={returnFoods}
+            setReturnFoods={updateJSON}
           />
         </div>
+        <Button
+        // onClick={() => {
+        //   const body = {
+        //     username: globalVar.getItem("username"),
+        //     mealType: returnMealType,
+        //     returnFoods: returnFoods,
+        //   };
+        //   const settings = {
+        //     method: "post",
+        //     headers: {
+        //       "Content-Type": "application/x-www-form-urlencoded",
+        //     },
+        //     body: JSON.stringify(body),
+        //   };
+
+        //   console.log("record!");
+        //   fetch("/api/foodRecord", settings)
+        //     .then((res) => res.json())
+        //     .then((body) => {
+        //       //alert(body.isSucceed);
+        //       // if (body.isSucceed === true) {
+        //       //   globalVar.setItem("username", JSON.stringify(body.username));
+        //       //   globalVar.setItem(
+        //       //     "returnFoods",
+        //       //     JSON.stringify(body.returnFoods)
+        //       //   );
+        //       //   //   alert("This is the branch");
+        //       //   globalVar.setItem(
+        //       //     "isSucceed",
+        //       //     JSON.stringify(body.isSucceed)
+        //       //   );
+        //       //   //alert('!!')
+        //       //   window.location.href = "/FoodRecord";
+        //       // } else {
+        //       //   alert(body.message);
+        //       // }
+        //       console.log(body);
+        //     })
+        //     .catch((err) => {
+        //       alert(err);
+        //       window.location.href = "/FoodRecord";
+        //     });
+        // }}
+        >
+          Record!
+        </Button>
       </div>
     </div>
   );

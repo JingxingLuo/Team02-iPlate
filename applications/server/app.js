@@ -691,6 +691,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
           // fruits array
           // grains
           // protien
+          console.log(req.body);
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
