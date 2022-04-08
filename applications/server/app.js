@@ -2,13 +2,14 @@ const express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
-var fact = "mongodb://0.0.0.0:27017/";
+var fact = "mongodb://localhost:27017/";
+var bcrypt = require("bcrypt");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.listen(80, () => {
+app.listen(8000, () => {
   console.log("TEST express");
 });
 
@@ -57,7 +58,7 @@ app.post("/api/login", (req, res, next) => {
     function (err, result) {
       if (err) throw err;
       if (result) {
-        if (result.password === `${TargetPassword}`) {
+        if (bcrypt.compare(TargetPassword, result.password)) {
           console.log(`user password matched!`);
           res.header("Access-Control-Allow-Origin", "http://localhost:80");
           res.header("Access-Control-Allow-Headers", "*");
@@ -110,10 +111,12 @@ app.post("/api/signup", (req, res, next) => {
   if (TargetPassword != Target_confirmpassword) {
     res.header("Access-Control-Allow-Origin", "http://localhost:80");
     res.header("Access-Control-Allow-Headers", "*");
-    res.status(200).send({
-      isSucceed: "false",
-      message: "Password and confirmPassword does not match!!",
-    });
+    res
+      .status(200)
+      .send({
+        isSucceed: "false",
+        message: "Password and confirmPassword does not match!!",
+      });
   } else {
     db.collection("test").findOne(
       { name: `${TargetUsername}` },
@@ -128,29 +131,36 @@ app.post("/api/signup", (req, res, next) => {
             .status(200)
             .send({ isSucceed: "false", message: "User already exists" });
         } else {
-          db.collection("test").insertOne(
-            {
-              name: `${TargetUsername}`,
-              password: `${TargetPassword}`,
-            },
-            (err, result) => {
-              if (err) throw err;
-              if (result) {
-                console.log(result);
-                console.log(`User signed up with name:${TargetUsername}`);
-                delete_name = TargetUsername;
-                res.header(
-                  "Access-Control-Allow-Origin",
-                  "http://localhost:3000"
-                );
-                res.header("Access-Control-Allow-Headers", "*");
-                res.status(200).send({
-                  isSucceed: "true",
-                  message: "Signed up successfully!!",
-                });
+          // hash the password
+          console.log("API triggered");
+          bcrypt.hash(TargetPassword, 10).then((result) => {
+            console.log(result);
+            db.collection("test").insertOne(
+              {
+                name: `${TargetUsername}`,
+                password: `${result}`,
+              },
+              (err, result) => {
+                if (err) throw err;
+                if (result) {
+                  console.log(result);
+                  console.log(`User signed up with name:${TargetUsername}`);
+                  delete_name = TargetUsername;
+                  res.header(
+                    "Access-Control-Allow-Origin",
+                    "http://localhost:3000"
+                  );
+                  res.header("Access-Control-Allow-Headers", "*");
+                  res
+                    .status(200)
+                    .send({
+                      isSucceed: "true",
+                      message: "Signed up successfully!!",
+                    });
+                }
               }
-            }
-          );
+            );
+          });
         }
       }
     );
@@ -691,7 +701,6 @@ app.post("/api/FoodRecord", (req, res, next) => {
           // fruits array
           // grains
           // protien
-          console.log(req.body);
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
