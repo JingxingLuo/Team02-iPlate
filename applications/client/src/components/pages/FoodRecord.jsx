@@ -220,48 +220,51 @@ const FoodRecord = (props) => {
           />
         </div>
         <Button
-        // onClick={() => {
-        //   const body = {
-        //     username: globalVar.getItem("username"),
-        //     mealType: returnMealType,
-        //     returnFoods: returnFoods,
-        //   };
-        //   const settings = {
-        //     method: "post",
-        //     headers: {
-        //       "Content-Type": "application/x-www-form-urlencoded",
-        //     },
-        //     body: JSON.stringify(body),
-        //   };
+        onClick={() => {
+          const body = {
+            username: globalVar.getItem("username"),
+            mealType: returnMealType,
+            veggie:returnFoods.Veggie,
+            fruits:returnFoods.Fruits,
+            protein:returnFoods.Protein,
+            grains:returnFoods.Carbs
+          };
+          const settings = {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          };
 
-        //   console.log("record!");
-        //   fetch("/api/foodRecord", settings)
-        //     .then((res) => res.json())
-        //     .then((body) => {
-        //       //alert(body.isSucceed);
-        //       // if (body.isSucceed === true) {
-        //       //   globalVar.setItem("username", JSON.stringify(body.username));
-        //       //   globalVar.setItem(
-        //       //     "returnFoods",
-        //       //     JSON.stringify(body.returnFoods)
-        //       //   );
-        //       //   //   alert("This is the branch");
-        //       //   globalVar.setItem(
-        //       //     "isSucceed",
-        //       //     JSON.stringify(body.isSucceed)
-        //       //   );
-        //       //   //alert('!!')
-        //       //   window.location.href = "/FoodRecord";
-        //       // } else {
-        //       //   alert(body.message);
-        //       // }
-        //       console.log(body);
-        //     })
-        //     .catch((err) => {
-        //       alert(err);
-        //       window.location.href = "/FoodRecord";
-        //     });
-        // }}
+          console.log("record!");
+          fetch("/api/foodRecord", settings)
+            .then((res) => res.json())
+            .then((body) => {
+              alert(body.isSucceed);
+              if (body.isSucceed === true) {
+                globalVar.setItem("username", JSON.stringify(body.username));
+                globalVar.setItem(
+                  "returnFoods",
+                  JSON.stringify(body.returnFoods)
+                );
+                //   alert("This is the branch");
+                globalVar.setItem(
+                  "isSucceed",
+                  JSON.stringify(body.isSucceed)
+                );
+                //alert('!!')
+                window.location.href = "/FoodRecord";
+              } else {
+                alert(body.message);
+              }
+              console.log(body);
+            })
+            .catch((err) => {
+              alert(err);
+              window.location.href = "/FoodRecord";
+            });
+        }}
         >
           Record!
         </Button>

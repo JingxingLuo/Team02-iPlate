@@ -168,7 +168,7 @@ app.post("/api/signup", (req, res, next) => {
 });
 
 app.post("/api/FoodRecord", (req, res, next) => {
-  console.log("trigged");
+  console.log(req.body);
 
   if (!req) {
     err("Invalid input");
