@@ -242,8 +242,9 @@ const FoodRecord = (props) => {
             .then((res) => res.json())
             .then((body) => {
               alert(body.isSucceed);
+              alert(body.message);
               if (body.isSucceed === true) {
-                globalVar.setItem("username", JSON.stringify(body.username));
+                // globalVar.setItem("username", JSON.stringify(body.username));
                 globalVar.setItem(
                   "returnFoods",
                   JSON.stringify(body.returnFoods)
@@ -254,7 +255,7 @@ const FoodRecord = (props) => {
                   JSON.stringify(body.isSucceed)
                 );
                 //alert('!!')
-                window.location.href = "/FoodRecord";
+                // window.location.href = "/FoodRecord";
               } else {
                 alert(body.message);
               }
@@ -267,6 +268,10 @@ const FoodRecord = (props) => {
         }}
         >
           Record!
+        </Button>
+
+        <Button>
+          History
         </Button>
       </div>
     </div>

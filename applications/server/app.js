@@ -669,7 +669,11 @@ app.post("/api/FoodRecord", (req, res, next) => {
               console.log(result);
             });
           });
-          res.send("Record Existed and updated!");
+          res.header("Access-Control-Allow-Headers", "*");
+          res.status(200).send({
+                isSucceed: "true",
+                message: "Data Record Updated successfully!!",
+              });
         } else {
           let temp_object = {
             name: `${req.body.name}`,
@@ -786,7 +790,12 @@ app.post("/api/FoodRecord", (req, res, next) => {
               // res.status(200).send({ "isSucceed": "true", "message": " Data Inserted up successfully!!" });
             }
           });
-          res.send("Data Inserted");
+          res.header("Access-Control-Allow-Headers", "*");
+          res.status(200)
+              .send({
+                isSucceed: "true",
+                message: "Data Record Inserted successfully!!",
+              });
 
           /////////////////////////////////
         }
