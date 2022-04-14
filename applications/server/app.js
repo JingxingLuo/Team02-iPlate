@@ -58,6 +58,8 @@ app.post("/api/login", (req, res, next) => {
     function (err, result) {
       if (err) throw err;
       if (result) {
+        console.log(result.password);
+        console.log(TargetPassword)
         if (TargetPassword == result.password) {
           console.log(`user password matched!`);
           res.header("Access-Control-Allow-Origin", "http://localhost:80");
@@ -138,7 +140,7 @@ app.post("/api/signup", (req, res, next) => {
             db.collection("test").insertOne(
               {
                 name: `${TargetUsername}`,
-                password: `${result}`,
+                password: `${TargetPassword}`,
               },
               (err, result) => {
                 if (err) throw err;
@@ -808,12 +810,31 @@ app.post("/api/FoodRecord", (req, res, next) => {
 app.post("/api/FoodHistory",(req,res,next) => {
   console.log(req.body);
   console.log("FoodHistory trigger");
-  console.log(req.body.name)
-  console.log(req.body.date)
+  // console.log(req.body.name)
+  // console.log(req.body.date)
 
-  db.collection("FoodHistory").findOne({name: `${req.body.name}`,
-  date: `${req.body.date}`}).then(res1 => {
+  //
+  // db.collection("FoodHistory").findOne(
+  //     {
+  //       name: `${req.body.name}`,
+  //       date: `${req.body.date}`,
+  //     },
+  //     function (err, result) {
+  //       if (err) throw new Error(err);
+
+
+  db.collection("FoodHistory").findOne(
+      {name: `${req.body.name}`,
+      date: `${req.body.date}`}
+      ).then(res1 => {
     console.log(res1)
-    res.send(res1)
+    res.header("Access-Control-Allow-Headers", "*");
+    res.status(200)
+        .send({
+          res1
+        });
+  }).catch((err)=>{
+    console.log('Something goes wrong ');
+    console.log(err);
   })
 });

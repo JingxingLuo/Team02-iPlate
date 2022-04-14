@@ -222,7 +222,7 @@ const FoodRecord = (props) => {
         <Button
         onClick={() => {
           const body = {
-            name: globalVar.getItem("username"),
+            name: JSON.parse(globalVar.getItem("username")),
             date: startDate,
             mealType: returnMealType,
             veggie:returnFoods.Veggie,
@@ -237,7 +237,7 @@ const FoodRecord = (props) => {
             },
             body: JSON.stringify(body),
           };
-
+          alert(body.name);
           console.log("record!");
           fetch("/api/foodRecord", settings)
             .then((res) => res.json())
@@ -271,7 +271,58 @@ const FoodRecord = (props) => {
           Record!
         </Button>
 
-        <Button>
+        <Button  onClick={() => {
+          const body = {
+            name:JSON.parse(globalVar.getItem("username")),
+            date: '2022-04-14',
+            // mealType: returnMealType,
+            // veggie:returnFoods.Veggie,
+            // fruits:returnFoods.Fruits,
+            // protein:returnFoods.Protein,
+            // grains:returnFoods.Carbs
+          };
+          alert(body.name);
+
+          const settings = {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          };
+
+          console.log("record!");
+          fetch("/api/FoodHistory", settings)
+              .then((res) => res.json())
+              .then((body) => {
+                console.log('History Triggered');
+                alert(body)
+                // alert(body.isSucceed);
+                // alert(body.message);
+                // alert(body.result)
+                // if (body.isSucceed === true) {
+                //   // globalVar.setItem("username", JSON.stringify(body.username));
+                //   // globalVar.setItem(
+                //   //     "returnFoods",
+                //   //     JSON.stringify(body.returnFoods)
+                //   // );
+                //   // //   alert("This is the branch");
+                //   // globalVar.setItem(
+                //   //     "isSucceed",
+                //   //     JSON.stringify(body.isSucceed)
+                //   // );
+                //   //alert('!!')
+                //   // window.location.href = "/FoodRecord";
+                // } else {
+                //   alert(body.message);
+                // }
+                console.log(body);
+              })
+              .catch((err) => {
+                alert(err);
+                window.location.href = "/FoodRecord";
+              });
+        }}>
           History
         </Button>
       </div>
