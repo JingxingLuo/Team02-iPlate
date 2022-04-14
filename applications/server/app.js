@@ -3,13 +3,13 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
 var fact = "mongodb://localhost:27017/";
-var bcrypt = require("bcrypt");
+// var bcrypt = require("bcrypt");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.listen(8000, () => {
+app.listen(80, () => {
   console.log("TEST express");
 });
 
@@ -58,7 +58,7 @@ app.post("/api/login", (req, res, next) => {
     function (err, result) {
       if (err) throw err;
       if (result) {
-        if (bcrypt.compare(TargetPassword, result.password)) {
+        if (TargetPassword == result.password) {
           console.log(`user password matched!`);
           res.header("Access-Control-Allow-Origin", "http://localhost:80");
           res.header("Access-Control-Allow-Headers", "*");
@@ -133,7 +133,7 @@ app.post("/api/signup", (req, res, next) => {
         } else {
           // hash the password
           console.log("API triggered");
-          bcrypt.hash(TargetPassword, 10).then((result) => {
+          // bcrypt.hash(TargetPassword, 10).then((result) => {
             console.log(result);
             db.collection("test").insertOne(
               {
@@ -160,7 +160,7 @@ app.post("/api/signup", (req, res, next) => {
                 }
               }
             );
-          });
+          // });
         }
       }
     );
