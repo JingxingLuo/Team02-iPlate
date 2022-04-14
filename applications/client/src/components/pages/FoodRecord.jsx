@@ -222,7 +222,8 @@ const FoodRecord = (props) => {
         <Button
         onClick={() => {
           const body = {
-            username: globalVar.getItem("username"),
+            name: globalVar.getItem("username"),
+            date: startDate,
             mealType: returnMealType,
             veggie:returnFoods.Veggie,
             fruits:returnFoods.Fruits,

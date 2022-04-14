@@ -2,14 +2,14 @@ const express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
-var fact = "mongodb://localhost:27017/";
+var fact = "mongodb://0.0.0.0:27017/";
 // var bcrypt = require("bcrypt");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.listen(80, () => {
+app.listen(8000, () => {
   console.log("TEST express");
 });
 
@@ -802,4 +802,18 @@ app.post("/api/FoodRecord", (req, res, next) => {
       }
     );
   }
+});
+
+
+app.post("/api/FoodHistory",(req,res,next) => {
+  console.log(req.body);
+  console.log("FoodHistory trigger");
+  console.log(req.body.name)
+  console.log(req.body.date)
+
+  db.collection("FoodHistory").findOne({name: `${req.body.name}`,
+  date: `${req.body.date}`}).then(res1 => {
+    console.log(res1)
+    res.send(res1)
+  })
 });
