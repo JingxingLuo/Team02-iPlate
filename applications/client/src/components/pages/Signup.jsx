@@ -1,38 +1,28 @@
 import React from "react";
 import Navbar from "../Navbar";
-// import Form from "../Form";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
   const Signup =(props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPassword,setconfirmPassword]=React.useState('');
-    // const [message, setMessage] = React.useState('');
-    // var globalVar = window.sessionStorage;
     const [jump, setJump] = React.useState(false);
 
-    //alert("JUMP" +  typeof(jump));
     if(jump)
     {
         window.location.href = '/about';
     }
 
-
     const handleSubmit2 = () => {
-        //console.log("test",username,password);
         const body = {
             username: username,
             password: password,
             confirmPassword: confirmPassword
         };
-        //console.log(body);
         const settings = {
             method: "post",
             headers: {
-                //'Content-Type': 'application/json',
                 "Content-Type": "application/x-www-form-urlencoded",
-                //"Access-Control-Allow-Origin": *
-                //"Content-Type": "text/plain"
             },
             body: JSON.stringify(body),
         };
@@ -40,7 +30,6 @@ import Navbar from "../Navbar";
             fetch('/api/signup', settings)
             .then((res) =>res.json()
                 ).then((body) => {
-                    // alert(typeof(body.isSucceed));
                     if(body.isSucceed==="true"){
                         alert('User succesfully created!!')
                         setJump(true);
@@ -55,7 +44,6 @@ import Navbar from "../Navbar";
                     window.location.href='/signup';
                     alert(err);
                 });
-
     };
 
     return (
@@ -105,26 +93,25 @@ import Navbar from "../Navbar";
                     {/* divider -> register page */}
                     {props.page === "register" && <div className="dropdown-divider"></div>}
 
-                    {/*  */}
+                    {/* Log in! button */}
+                    <div className="nav-a">
+                        <Link
+                            to={"/"}
+                            className="btn btn-outline-success my-2 my-sm-0 button"
+                        >
+                        Existing User? Log In!
+                        </Link>
 
                     {/* submit button */}
                     <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
                         {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
-                        {'sign up'}
+                        {'Submit'}
                     </button>
-                    <div>
-                        {/* {message} */}
                     </div>
                 </form>
                 
             </div>
-
-
-            {/* {message} */}
-
         </div>
-
-
     );
 };
 

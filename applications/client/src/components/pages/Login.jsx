@@ -1,34 +1,26 @@
 import React from "react";
 import Navbar from "../Navbar";
-// import Form from "../Form";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
   const Login =(props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    // const [message, setMessage] = React.useState('');
     var globalVar = window.sessionStorage;
 
-    //alert(typeof(globalVar.isSucceed));
     if(globalVar.isSucceed==="true")
     {
       window.location.href = '/about';
     }
 
     const handleSubmit2 = () => {
-        //console.log("test",username,password);
         const body = {
             username: username,
             password: password,
         };
-        //console.log(body);
         const settings = {
             method: "post",
             headers: {
-                //'Content-Type': 'application/json',
                 "Content-Type": "application/x-www-form-urlencoded",
-                //"Access-Control-Allow-Origin": *
-                //"Content-Type": "text/plain"
             },
             body: JSON.stringify(body),
         };
@@ -90,68 +82,23 @@ import Navbar from "../Navbar";
                         />
                     </div>
 
-                    {/* divider -> register page */}
-                    {/* {props.page === "register" && <div className="dropdown-divider"></div>} */}
-
-                    {/*  */}
-
-                    {/* submit button */}
-                    <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
-                        {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
-                        {'Log in'}
-                    </button>
-                    <div>
-                        {/* {message} */}
+                    <div className="nav-a">
+                        {/* Sign up! button */}
+                        <Link
+                            to={"/signup"}
+                            className="btn btn-outline-success my-2 my-sm-0 button"
+                        >
+                        New User ? Sign up
+                        </Link>
+                        {/* submit button */}
+                        <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
+                        {'Submit'}
+                        </button>
                     </div>
                 </form>
-                
             </div>
-
-
-            {/* {message} */}
-
         </div>
-
-
     );
 };
 
 export default Login;
-
-
-
-
-
-
-
-// import React from "react";
-// import Navbar from "../Navbar";
-// import Form from "../Form";
-
-// function Login() {
-//   const globalVar = window.sessionStorage;
-//   var boolean = globalVar.getItem("isSucceed");
-//   console.log(typeof(boolean));
-//   var color = false;
-//   if(boolean == "false"){
-//     color = false;
-//   }else{
-//     color = true;
-//   }
-//   window.history.forward();
-//   return (
-//     <div>
-//       {/* nav bar */}
-//       <Navbar isLogged={false} />
-
-//       {/* content */}
-//       <Form />
-
-//     </div>
-    
-    
-    
-//   );
-// }
-
-// export default Login;
