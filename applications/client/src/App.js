@@ -18,6 +18,7 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Contact from "./components/pages/Contact";
 import FoodRecord from "./components/pages/FoodRecord";
+import History from "./components/pages/History";
 
 class App extends Component {
   render() {
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/FoodRecord" element={<FoodRecord />} />
+          <Route path="/viewHistory" element={<History />} />
         </Routes>
       </Router>
     );

@@ -11,6 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 
 Chart.register(ArcElement);
 
+// Testing data
 let foods = [
   ["Broccoli", "Cabbage", "Spinach", "Kale", "Cauliflower", "Bok Choi"],
   [
@@ -30,46 +31,24 @@ let foods = [
 var globalVar = window.sessionStorage;
 
 const FoodRecord = (props) => {
-  // testing
-
+  // Hooks
   const [startDate, setStartDate] = React.useState(new Date());
-
   const [graph, setGraph] = React.useState({
     labels: [],
     data: [],
   });
-
   const [returnFoods, setReturnFoods] = React.useState({
     Veggie: [],
     Fruits: [],
     Carbs: [],
     Protein: [],
   });
-
   const [returnMealType, setReturnMealType] =
     React.useState("Choose your meal");
-
-  function updateJSON(foodGroups, newFood, newFoodAmount) {
-    if (newFoodAmount !== "") {
-      setReturnFoods((prev) => {
-        prev[foodGroups].push({ [newFood]: parseInt(newFoodAmount, 10) });
-        console.log("prev: ", prev);
-        return prev;
-      });
-    }
-  }
-
-  function updateMealType(event) {
-    setReturnMealType(event.target.textContent);
-  }
-
-  // search how to have "placeholder" for props value
   const [foodGroupLabel, setFoodGroupLabel] = React.useState("");
-
   const [foodLabelIndex, setFoodLabelIndex] = React.useState(0);
 
   const chartRef = useRef();
-
   const graphData = [
     {
       label: "Veggie",
@@ -88,6 +67,34 @@ const FoodRecord = (props) => {
       value: 20,
     },
   ];
+
+  function updateJSON(foodGroups, newFood, newFoodAmount) {
+    if (newFoodAmount !== "") {
+      setReturnFoods((prev) => {
+        prev[foodGroups].push({
+          name: newFood,
+          amount: parseInt(newFoodAmount, 10),
+        });
+        console.log("prev: ", prev);
+        return prev;
+      });
+    }
+  }
+
+  // previous updateJSON
+  // function updateJSON(foodGroups, newFood, newFoodAmount) {
+  //   if (newFoodAmount !== "") {
+  //     setReturnFoods((prev) => {
+  //       prev[foodGroups].push({ [newFood]: parseInt(newFoodAmount, 10) });
+  //       console.log("prev: ", prev);
+  //       return prev;
+  //     });
+  //   }
+  // }
+
+  function updateMealType(event) {
+    setReturnMealType(event.target.textContent);
+  }
 
   useEffect(() => {
     const labels = [];
@@ -142,6 +149,7 @@ const FoodRecord = (props) => {
             <div className="col align-self-start">
               <h2>My Plate for: </h2>
             </div>
+
             {/* Date for recording */}
             <div className="col align-self-start">
               <DatePicker
@@ -151,6 +159,7 @@ const FoodRecord = (props) => {
                 onChange={(date) => setStartDate(date)}
               />
             </div>
+
             {/* DropDown for meal */}
             <div className="col align-self-start">
               <Dropdown>
@@ -167,28 +176,6 @@ const FoodRecord = (props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-            {/* <div className="col align-self-start">
-              <Dropdown>
-                <Dropdown.Toggle
-                  id="dropdown-button-light-example1"
-                  variant="secondary"
-                >
-                  {returnMealType}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu variant="dark">
-                  <Dropdown.Item
-                    onClick={updateMealType}
-                    href="#/action-1"
-                    active
-                  >
-                    Breakfast
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Lunch</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Dinner</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div> */}
           </div>
         </div>
         <div className="food-record-main">
@@ -211,92 +198,101 @@ const FoodRecord = (props) => {
               }}
             />
           </div>
-          {/* here foodGroupName and foods should be default(placeholder) like Food Options & list of all foods in our db */}
           <FoodOptionsCard
+            mealType={returnMealType}
             foodGroupName={foodGroupLabel}
             foods={foods[foodLabelIndex]}
             returnFoods={returnFoods}
             setReturnFoods={updateJSON}
           />
         </div>
+
+        {/* record button */}
         <Button
-        onClick={() => {
-          const body = {
-            name: JSON.parse(globalVar.getItem("username")),
-            date: startDate,
-            mealType: returnMealType,
-            veggie:returnFoods.Veggie,
-            fruits:returnFoods.Fruits,
-            protein:returnFoods.Protein,
-            grains:returnFoods.Carbs
-          };
-          const settings = {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          };
-          alert(body.name);
-          console.log("record!");
-          fetch("/api/foodRecord", settings)
-            .then((res) => res.json())
-            .then((body) => {
-              alert(body.isSucceed);
-              alert(body.message);
-              if (body.isSucceed === true) {
-                // globalVar.setItem("username", JSON.stringify(body.username));
-                globalVar.setItem(
-                  "returnFoods",
-                  JSON.stringify(body.returnFoods)
-                );
-                //   alert("This is the branch");
-                globalVar.setItem(
-                  "isSucceed",
-                  JSON.stringify(body.isSucceed)
-                );
-                //alert('!!')
-                // window.location.href = "/FoodRecord";
-              } else {
+          onClick={() => {
+            const body = {
+              name: JSON.parse(globalVar.getItem("username")),
+              date:
+                startDate.getFullYear() +
+                "-" +
+                (startDate.getMonth() + 1) +
+                "-" +
+                startDate.getDate(),
+              mealType: returnMealType,
+              veggie: returnFoods.Veggie,
+              fruits: returnFoods.Fruits,
+              protein: returnFoods.Protein,
+              grains: returnFoods.Carbs,
+            };
+            const settings = {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            };
+            alert(body.name);
+            console.log("record!");
+            fetch("/api/foodRecord", settings)
+              .then((res) => res.json())
+              .then((body) => {
+                alert(body.isSucceed);
                 alert(body.message);
-              }
-              console.log(body);
-            })
-            .catch((err) => {
-              alert(err);
-              window.location.href = "/FoodRecord";
-            });
-        }}
+                if (body.isSucceed === true) {
+                  // globalVar.setItem("username", JSON.stringify(body.username));
+                  globalVar.setItem(
+                    "returnFoods",
+                    JSON.stringify(body.returnFoods)
+                  );
+                  //   alert("This is the branch");
+                  globalVar.setItem(
+                    "isSucceed",
+                    JSON.stringify(body.isSucceed)
+                  );
+                  //alert('!!')
+                  // window.location.href = "/FoodRecord";
+                } else {
+                  alert(body.message);
+                }
+                console.log(body);
+              })
+              .catch((err) => {
+                alert(err);
+                window.location.href = "/FoodRecord";
+              });
+          }}
         >
           Record!
         </Button>
 
-        <Button  onClick={() => {
-          const body = {
-            name:JSON.parse(globalVar.getItem("username")),
-            date: '2022-04-14',
-            // mealType: returnMealType,
-            // veggie:returnFoods.Veggie,
-            // fruits:returnFoods.Fruits,
-            // protein:returnFoods.Protein,
-            // grains:returnFoods.Carbs
-          };
-          alert(body.name);
+        {/* History Button (Needed to be removed) */}
+        <Button
+          onClick={() => {
+            const body = {
+              name: JSON.parse(globalVar.getItem("username")),
+              date:
+                startDate.getFullYear() +
+                "-" +
+                (startDate.getMonth() + 1) +
+                "-" +
+                startDate.getDate(),
+            };
+            alert(body.name);
 
-          const settings = {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          };
+            const settings = {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            };
 
-          console.log("record!");
-          fetch("/api/FoodHistory", settings)
+            console.log("record!");
+            fetch("/api/FoodHistory", settings)
               .then((res) => res.json())
               .then((body) => {
-                console.log('History Triggered');
-                alert(body)
+                console.log("History Triggered");
+                alert(body);
                 // alert(body.isSucceed);
                 // alert(body.message);
                 // alert(body.result)
@@ -322,7 +318,8 @@ const FoodRecord = (props) => {
                 alert(err);
                 window.location.href = "/FoodRecord";
               });
-        }}>
+          }}
+        >
           History
         </Button>
       </div>
