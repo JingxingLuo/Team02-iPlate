@@ -85,7 +85,7 @@ input {
 .scrollable {
   /* width: 50%; */
   overflow: auto;
-  max-height: 200px;
+  max-height: 100%;
 }
 
 .food-record-main {
@@ -100,7 +100,7 @@ input {
 
 .history-content {
   border: 3px solid black;
-  height: 50%;
+  height: 600px;
   width: 80%;
   margin: 0 auto;
   display: inline-flex;
@@ -117,4 +117,20 @@ input {
   padding: 5px;
   margin-left: auto;
   margin-right: 0;
+}
+
+.table-veggie {
+  background-color: rgba(75, 192, 192, 0.2);
+}
+
+.table-grains {
+  background-color: rgba(255, 206, 86, 0.2);
+}
+
+.table-fruits {
+  background-color: rgba(153, 102, 255, 0.2);
+}
+
+.table-protein {
+  background-color: rgba(255, 99, 132, 0.2);
 }

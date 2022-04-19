@@ -83,7 +83,7 @@ function FoodGroupCard(props) {
 
                           //   onClick={props.setReturnFoods}
                           onClick={() => {
-                            if (props.mealType == "Choose your meal") {
+                            if (props.mealType === "Choose your meal") {
                               console.log("Please choose a meal type!");
                               alert("Please choose a meal type!");
                             } else {
@@ -96,9 +96,13 @@ function FoodGroupCard(props) {
                                 food,
                                 amount
                               );
-                              console.log(props.foodGroupName);
-                              console.log(food);
-                              console.log(amount);
+                              console.log("meal type: ", props.mealType);
+                              console.log(
+                                "foodGroupName: ",
+                                props.foodGroupName
+                              );
+                              console.log("food name: ", food);
+                              console.log("food amount: ", amount);
                             }
                           }}
                         >

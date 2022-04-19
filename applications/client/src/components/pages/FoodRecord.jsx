@@ -93,6 +93,12 @@ const FoodRecord = (props) => {
   // }
 
   function updateMealType(event) {
+    setReturnFoods({
+      Veggie: [],
+      Fruits: [],
+      Carbs: [],
+      Protein: [],
+    });
     setReturnMealType(event.target.textContent);
   }
 
@@ -224,6 +230,7 @@ const FoodRecord = (props) => {
               protein: returnFoods.Protein,
               grains: returnFoods.Carbs,
             };
+            console.log("body from record onclick: ", body);
             const settings = {
               method: "post",
               headers: {
