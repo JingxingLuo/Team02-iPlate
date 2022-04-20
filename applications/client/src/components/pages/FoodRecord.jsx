@@ -81,17 +81,6 @@ const FoodRecord = (props) => {
     }
   }
 
-  // previous updateJSON
-  // function updateJSON(foodGroups, newFood, newFoodAmount) {
-  //   if (newFoodAmount !== "") {
-  //     setReturnFoods((prev) => {
-  //       prev[foodGroups].push({ [newFood]: parseInt(newFoodAmount, 10) });
-  //       console.log("prev: ", prev);
-  //       return prev;
-  //     });
-  //   }
-  // }
-
   function updateMealType(event) {
     setReturnFoods({
       Veggie: [],
@@ -185,7 +174,7 @@ const FoodRecord = (props) => {
           </div>
         </div>
         <div className="food-record-main">
-          <div
+          {/* <div
             style={{ height: "300px", width: "300px", marginLeft: "0 auto" }}
           >
             <Pie
@@ -203,7 +192,41 @@ const FoodRecord = (props) => {
                 }
               }}
             />
+          </div> */}
+
+          {/* New PIE chart */}
+          <div
+            style={{
+              height: "500px",
+              width: "500px",
+              marginLeft: "0 auto",
+            }}
+          >
+            <Pie
+              data={data}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    onClick: () => {},
+                  },
+                },
+              }}
+              ref={chartRef}
+              onClick={(event, element) => {
+                const temp_index = getElementAtEvent(
+                  chartRef.current,
+                  event
+                )[0];
+                if (temp_index) {
+                  const index = temp_index.index;
+                  setFoodLabelIndex(index);
+                  setFoodGroupLabel(graphData[index].label);
+                }
+              }}
+            />
           </div>
+
           <FoodOptionsCard
             mealType={returnMealType}
             foodGroupName={foodGroupLabel}
@@ -216,6 +239,10 @@ const FoodRecord = (props) => {
         {/* record button */}
         <Button
           onClick={() => {
+            // calorie calculation
+            // 1. calculate veggies calorie
+
+            // let calories = [300, 50, 400, 70];
             const body = {
               name: JSON.parse(globalVar.getItem("username")),
               date:
@@ -229,6 +256,7 @@ const FoodRecord = (props) => {
               fruits: returnFoods.Fruits,
               protein: returnFoods.Protein,
               grains: returnFoods.Carbs,
+              // calories: calories;
             };
             console.log("body from record onclick: ", body);
             const settings = {
@@ -273,7 +301,7 @@ const FoodRecord = (props) => {
         </Button>
 
         {/* History Button (Needed to be removed) */}
-        <Button
+        {/* <Button
           onClick={() => {
             const body = {
               name: JSON.parse(globalVar.getItem("username")),
@@ -328,7 +356,7 @@ const FoodRecord = (props) => {
           }}
         >
           History
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
