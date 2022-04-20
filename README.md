@@ -16,13 +16,11 @@
 
 3. Fill out the table below
 
-
-| Student Name    | Student Email    | GitHub Username | Stundet's role 
-|    :---:        |     :---:        |     :---:       |
-
-| Prathiba Ramesh | pramesh@sfsu.edu | PrathibaRamesh  | Team Leader <br/>
-| Tun-Ni Chiang   | tchiang3@mail.sfsu.edu | tunni-chiang | Front-end Lead <br/>
-|Christopher Ling | cling1@mail.sfsu.edu | dslayer1392 | Front-end Side <br/>
+| Student Name    | Student Email    | GitHub Username | Stundet's role |
+| ----------------- | ----------------- | ----------------- | ----------------- |
+| Prathiba Ramesh | pramesh@sfsu.edu | PrathibaRamesh  | Team Leader | <br/> 
+| Tun-Ni Chiang   | tchiang3@mail.sfsu.edu | tunni-chiang | Front-end Lead <br/> |
+|Christopher Ling | cling1@mail.sfsu.edu | dslayer1392 | Front-end Side <br/> |
 | Jingxing Luo    | jluo17@mail.sfsu.edu | JingxingLuo | Back-end Lead <br/>
 | Myat Kyaw       | mkyaw@mail.sfsu.edu  | MyatKyaw121 | Github Master <br/>
 | Aung Myat       | amyat@mail.sfsu.edu  | aungmyatsfsu| Scrum Master <br/>
