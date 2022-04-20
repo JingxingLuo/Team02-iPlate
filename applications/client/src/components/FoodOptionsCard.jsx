@@ -1,35 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/esm/Button";
 
-// let veggies = [
-//   "Broccoli",
-//   "Cabbage",
-//   "Spinach",
-//   "Kale",
-//   "Cauliflower",
-//   "Bok Choi",
-// ];
-
-// function createFoodOption(foodName, index) {
-//   return (
-//     <tr>
-//       <td>{foodName}</td>
-//       <td>
-//         <input id={index} />
-//       </td>
-//       <td>
-//         <Button
-//           onClick={(event) => {
-//             console.log(event.target);
-//           }}
-//         >
-//           click me
-//         </Button>
-//       </td>
-//     </tr>
-//   );
-// }
-
 function FoodGroupCard(props) {
   return (
     <>
@@ -112,12 +83,27 @@ function FoodGroupCard(props) {
 
                           //   onClick={props.setReturnFoods}
                           onClick={() => {
-                            const amount = document.getElementById(index).value;
-                            props.setReturnFoods(
-                              props.foodGroupName,
-                              food,
-                              amount
-                            );
+                            if (props.mealType === "Choose your meal") {
+                              console.log("Please choose a meal type!");
+                              alert("Please choose a meal type!");
+                            } else {
+                              // console.log(props.mealType);
+                              // alert(props.mealType);
+                              const amount =
+                                document.getElementById(index).value;
+                              props.setReturnFoods(
+                                props.foodGroupName,
+                                food,
+                                amount
+                              );
+                              console.log("meal type: ", props.mealType);
+                              console.log(
+                                "foodGroupName: ",
+                                props.foodGroupName
+                              );
+                              console.log("food name: ", food);
+                              console.log("food amount: ", amount);
+                            }
                           }}
                         >
                           click me
