@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
     if(jump)
     {
-        window.location.href = '/about';
+        window.location.href = '/home';
     }
 
     const handleSubmit2 = () => {

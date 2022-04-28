@@ -76,15 +76,6 @@ function Navbar(props) {
             <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>
-                  <Link to="/viewUserDetails" className="nav-link scrollto">
-                    <i className="bx bx-user"></i> <span>User Details</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-            <nav id="navbar" className="navbar nav-menu">
-              <ul>
-                <li>
                   <Link to="/about" className="nav-link scrollto">
                     <i className="bx bx-message-square-detail"></i>{" "}
                     <span>About</span>
@@ -92,7 +83,7 @@ function Navbar(props) {
                 </li>
               </ul>
             </nav>
-            <nav id="navbar" className="navbar nav-menu">
+            {/* <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>
                   <Link to="/faq" className="nav-link scrollto">
@@ -100,7 +91,7 @@ function Navbar(props) {
                   </Link>
                 </li>
               </ul>
-            </nav>
+            </nav> */}
             <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>

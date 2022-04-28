@@ -266,7 +266,8 @@ const FoodRecord = (props) => {
               },
               body: JSON.stringify(body),
             };
-            alert(body.name);
+            // alert(body.name);
+            alert("Meal recorded succesfully");
             console.log("record!");
             fetch("/api/foodRecord", settings)
               .then((res) => res.json())
