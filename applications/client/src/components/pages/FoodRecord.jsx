@@ -8,13 +8,15 @@ import { Chart, ArcElement } from "chart.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import FoodOptionsCard from "../FoodOptionsCard";
 import Button from "react-bootstrap/esm/Button";
+import AddedFoodCard from "../AddedFoodCard";
+import HistoryFoodCard from "../HistoryFoodCard";
 
 Chart.register(ArcElement);
 
 // Testing data
-let foods = [
-  ["Broccoli", "Cabbage", "Spinach", "Kale", "Cauliflower", "Bok Choi"],
-  [
+let foods = {
+  Veggie: ["Broccoli", "Cabbage", "Spinach", "Kale", "Cauliflower", "Bok Choi"],
+  Fruits: [
     "Apple",
     "Orange",
     "Strawberry",
@@ -24,9 +26,26 @@ let foods = [
     "Grape Fruit",
     "Cherry",
   ],
-  ["Rice", "Potato", "Sweet Potato", "Corn", "Noodles", "Pasta", "Bread"],
-  ["Chicken", "Beef", "Turkey", "Eggs", "Tofu", "Tempeh", "Paneer", "Salmon"],
-];
+  Grains: [
+    "Rice",
+    "Potato",
+    "Sweet Potato",
+    "Corn",
+    "Noodles",
+    "Pasta",
+    "Bread",
+  ],
+  Protein: [
+    "Chicken",
+    "Beef",
+    "Turkey",
+    "Eggs",
+    "Tofu",
+    "Tempeh",
+    "Paneer",
+    "Salmon",
+  ],
+};
 
 var globalVar = window.sessionStorage;
 
@@ -40,12 +59,11 @@ const FoodRecord = (props) => {
   const [returnFoods, setReturnFoods] = React.useState({
     Veggie: [],
     Fruits: [],
-    Carbs: [],
+    Grains: [],
     Protein: [],
   });
-  const [returnMealType, setReturnMealType] =
-    React.useState("Choose your meal");
-  const [foodGroupLabel, setFoodGroupLabel] = React.useState("");
+  const [returnMealType, setReturnMealType] = React.useState("Meal");
+  const [foodGroupLabel, setFoodGroupLabel] = React.useState("Food Group");
   const [foodLabelIndex, setFoodLabelIndex] = React.useState(0);
 
   const chartRef = useRef();
@@ -68,13 +86,27 @@ const FoodRecord = (props) => {
     },
   ];
 
+  function findFoodIndex(foodName, foodGroupArray) {
+    return foodGroupArray.findIndex((food) => food.name === foodName);
+  }
+
+  // TODO need to validate the non-number amount input!!!!!
   function updateJSON(foodGroups, newFood, newFoodAmount) {
     if (newFoodAmount !== "") {
       setReturnFoods((prev) => {
-        prev[foodGroups].push({
-          name: newFood,
-          amount: parseInt(newFoodAmount, 10),
-        });
+        // if newFood exist -> update amount
+        // if not -> push
+        const foundFoodIndex = findFoodIndex(newFood, prev[foodGroups]);
+        if (foundFoodIndex != -1) {
+          // console.log("Food Exist----------");
+          prev[foodGroups][foundFoodIndex].amount = parseInt(newFoodAmount, 10);
+        } else {
+          // console.log("Food Does Not Exist----------");
+          prev[foodGroups].push({
+            name: newFood,
+            amount: parseInt(newFoodAmount, 10),
+          });
+        }
         console.log("prev: ", prev);
         return prev;
       });
@@ -85,10 +117,16 @@ const FoodRecord = (props) => {
     setReturnFoods({
       Veggie: [],
       Fruits: [],
-      Carbs: [],
+      Grains: [],
       Protein: [],
     });
     setReturnMealType(event.target.textContent);
+  }
+
+  function updateFoodGroup(event) {
+    setFoodGroupLabel(event.target.textContent);
+    // document.getElementsByClassName("food-table-input").reset();
+    // console.log(document.getElementsByClassName("food-table-input").value);
   }
 
   useEffect(() => {
@@ -171,30 +209,33 @@ const FoodRecord = (props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </div>
+
+            {/* DropDown for food category */}
+            <div className="col align-self-start">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {foodGroupLabel}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={updateFoodGroup}>
+                    Veggie
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={updateFoodGroup}>
+                    Grains
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={updateFoodGroup}>
+                    Protein
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={updateFoodGroup}>
+                    Fruits
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           </div>
         </div>
         <div className="food-record-main">
-          {/* <div
-            style={{ height: "300px", width: "300px", marginLeft: "0 auto" }}
-          >
-            <Pie
-              ref={chartRef}
-              data={data}
-              onClick={(event, element) => {
-                const temp_index = getElementAtEvent(
-                  chartRef.current,
-                  event
-                )[0];
-                if (temp_index) {
-                  const index = temp_index.index;
-                  setFoodLabelIndex(index);
-                  setFoodGroupLabel(graphData[index].label);
-                }
-              }}
-            />
-          </div> */}
-
-          {/* New PIE chart */}
           <div
             style={{
               height: "500px",
@@ -202,7 +243,7 @@ const FoodRecord = (props) => {
               marginLeft: "0 auto",
             }}
           >
-            <Pie
+            {/* <Pie
               data={data}
               options={{
                 plugins: {
@@ -224,13 +265,15 @@ const FoodRecord = (props) => {
                   setFoodGroupLabel(graphData[index].label);
                 }
               }}
-            />
+            /> */}
           </div>
-
+          {/* Food cart */}
+          <HistoryFoodCard meal_data={returnFoods} />
+          {/* <AddedFoodCard foods={returnFoods} /> */}
           <FoodOptionsCard
             mealType={returnMealType}
             foodGroupName={foodGroupLabel}
-            foods={foods[foodLabelIndex]}
+            foods={foods[foodGroupLabel]}
             returnFoods={returnFoods}
             setReturnFoods={updateJSON}
           />
@@ -255,7 +298,7 @@ const FoodRecord = (props) => {
               veggie: returnFoods.Veggie,
               fruits: returnFoods.Fruits,
               protein: returnFoods.Protein,
-              grains: returnFoods.Carbs,
+              grains: returnFoods.Grains,
               // calories: calories;
             };
             console.log("body from record onclick: ", body);
@@ -300,64 +343,6 @@ const FoodRecord = (props) => {
         >
           Record!
         </Button>
-
-        {/* History Button (Needed to be removed) */}
-        {/* <Button
-          onClick={() => {
-            const body = {
-              name: JSON.parse(globalVar.getItem("username")),
-              date:
-                startDate.getFullYear() +
-                "-" +
-                (startDate.getMonth() + 1) +
-                "-" +
-                startDate.getDate(),
-            };
-            alert(body.name);
-
-            const settings = {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(body),
-            };
-
-            console.log("record!");
-            fetch("/api/FoodHistory", settings)
-              .then((res) => res.json())
-              .then((body) => {
-                console.log("History Triggered");
-                alert(body);
-                // alert(body.isSucceed);
-                // alert(body.message);
-                // alert(body.result)
-                // if (body.isSucceed === true) {
-                //   // globalVar.setItem("username", JSON.stringify(body.username));
-                //   // globalVar.setItem(
-                //   //     "returnFoods",
-                //   //     JSON.stringify(body.returnFoods)
-                //   // );
-                //   // //   alert("This is the branch");
-                //   // globalVar.setItem(
-                //   //     "isSucceed",
-                //   //     JSON.stringify(body.isSucceed)
-                //   // );
-                //   //alert('!!')
-                //   // window.location.href = "/FoodRecord";
-                // } else {
-                //   alert(body.message);
-                // }
-                console.log(body);
-              })
-              .catch((err) => {
-                alert(err);
-                window.location.href = "/FoodRecord";
-              });
-          }}
-        >
-          History
-        </Button> */}
       </div>
     </div>
   );

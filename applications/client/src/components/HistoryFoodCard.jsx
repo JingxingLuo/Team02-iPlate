@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 
 function createFoodTable(meal) {
-  console.log("Inside createFoodTable");
-  console.log("meal: ", meal);
   let result = [];
   for (const property in meal) {
     if (property !== "mealType") {
-      console.log(`${property}: ${JSON.stringify(meal[property])}`);
       meal[property].map((food, index) => {
         result.push(
           <tr className={`table-${property}`} key={`${property}-${index}`}>
@@ -24,6 +21,13 @@ function createFoodTable(meal) {
 function HistoryFoodCard(props) {
   return (
     <div className="history-table">
+      <Button
+        onClick={() => {
+          console.log("Inside the history food card: ", props.meal_data);
+        }}
+      >
+        Check hook
+      </Button>
       <div className="scrollable">
         <table className="table">
           {/* table header */}

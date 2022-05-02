@@ -187,25 +187,10 @@ app.post("/api/FoodRecord", (req, res, next) => {
 
         // update document
         if (result) {
-          // console.log("[Document exists - update the document]");
-          // console.log("\n----- Destructure the req.body object -----");
-          // destructuring req.body object
           let name, date, mealType, veggie, fruits, grains, protein;
           ({ name, date, mealType, veggie, fruits, grains, protein } =
             req.body);
-          // console.log("name: ", name);
-          // console.log("date: ", date);
-          // console.log("mealType: ", mealType);
-          // console.log("veggie: ", veggie);
-          // console.log("fruits: ", fruits);
-          // console.log("grains: ", grains);
-          // console.log("protein: ", protein);
-          // console.log("-------------------------------------------");
           const targetedMealDocument = result[mealType.toLowerCase()];
-          // console.log(
-          //   "targeted meal to update in document: ",
-          //   targetedMealDocument
-          // );
 
           // for veggie
           for (let veg of veggie) {
@@ -305,6 +290,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
+          console.log(req.body);
           switch (meal) {
             case "BREAKFAST":
               {
