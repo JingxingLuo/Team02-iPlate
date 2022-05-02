@@ -26,7 +26,7 @@ const Form = (props) => {
         globalVar.setItem("username", JSON.stringify(body.username));
         globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
         if (body.isSucceed === true) {
-          window.location.href = "/about";
+          window.location.href = "/home";
         } else {
           alert(body.message);
           globalVar.removeItem("isSucceed");

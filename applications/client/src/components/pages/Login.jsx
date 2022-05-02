@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
     if(globalVar.isSucceed==="true")
     {
-      window.location.href = '/about';
+      window.location.href = '/home';
     }
 
     const handleSubmit2 = () => {
@@ -34,7 +34,7 @@ import { Link } from "react-router-dom";
                     //   alert("This is the branch");
                       globalVar.setItem("isSucceed", JSON.stringify(body.isSucceed));
                       //alert('!!')
-                      window.location.href = '/about';
+                      window.location.href = '/home';
                       
                     }
                     else{

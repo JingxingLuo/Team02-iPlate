@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/css/style.css";
 
 import About from "./components/about.component";
+import Home from "./components/home.component";
 import PrathibaUser from "./components/prathiba.component";
 import ChristopherUser from "./components/christopher.component";
 import MTKComponent from "./components/MTK.component";
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/jingxing" element={<Jingxing />} />
           <Route path="/" exact element={<Login />} />
           <Route path="/about" element={<About />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/FoodRecord" element={<FoodRecord />} />

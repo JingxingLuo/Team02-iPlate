@@ -309,13 +309,14 @@ const FoodRecord = (props) => {
               },
               body: JSON.stringify(body),
             };
-            alert(body.name);
+            // alert(body.name);
+            alert("Meal recorded succesfully");
             console.log("record!");
             fetch("/api/foodRecord", settings)
               .then((res) => res.json())
               .then((body) => {
-                alert(body.isSucceed);
-                alert(body.message);
+                // alert(body.isSucceed);
+                // alert(body.message);
                 if (body.isSucceed === true) {
                   // globalVar.setItem("username", JSON.stringify(body.username));
                   globalVar.setItem(
