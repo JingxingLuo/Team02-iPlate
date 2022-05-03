@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 // npm component
 import DatePicker from "react-datepicker";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 // self-built component
@@ -135,6 +136,8 @@ function History() {
     console.log("Grains: ", grains_cal);
     console.log("Veggie: ", veggie_cal);
     const total_cal = protein_cal + fruits_cal + grains_cal + veggie_cal;
+
+    ChartJS.register(ArcElement, Tooltip, Legend);
 
     let data = {
       // red: rgba(255, 99, 132, 0.2) -> protein
