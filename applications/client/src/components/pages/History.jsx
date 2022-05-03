@@ -205,7 +205,6 @@ function History() {
             {/* Search Button */}
             <div className="col align-self-start">
               <Button
-                className="button"
                 onClick={() => {
                   const body = {
                     name: JSON.parse(globalVar.getItem("username")),
