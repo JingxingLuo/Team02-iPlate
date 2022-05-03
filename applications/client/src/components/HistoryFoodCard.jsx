@@ -21,13 +21,6 @@ function createFoodTable(meal) {
 function HistoryFoodCard(props) {
   return (
     <div className="history-table">
-      <Button
-        onClick={() => {
-          console.log("Inside the history food card: ", props.meal_data);
-        }}
-      >
-        Check hook
-      </Button>
       <div className="scrollable">
         <table className="table">
           {/* table header */}
@@ -46,5 +39,5 @@ function HistoryFoodCard(props) {
     </div>
   );
 }
-
 export default HistoryFoodCard;
+export { HistoryFoodCard, createFoodTable };

@@ -202,6 +202,7 @@ function History() {
             {/* Search Button */}
             <div className="col align-self-start">
               <Button
+                className="button"
                 onClick={() => {
                   const body = {
                     name: JSON.parse(globalVar.getItem("username")),
@@ -249,26 +250,27 @@ function History() {
         {records.map((record, index) => {
           return (
             <div className="history-content">
-              {/* PIE chart */}
-              <div
-                style={{
-                  height: "500px",
-                  width: "500px",
-                  marginLeft: "0 auto",
-                }}
-              >
-                <h3>{record.mealType}</h3>
-                <Pie
-                  options={{
-                    plugins: {
-                      legend: {
-                        display: true,
-                        onClick: () => {},
-                      },
-                    },
+              <div className="pie-chart">
+                <h3 className="pie-meal-title">{record.mealType}</h3>
+                <div
+                  style={{
+                    height: "500px",
+                    width: "500px",
+                    marginLeft: "0 auto",
                   }}
-                  data={getData(record)}
-                />
+                >
+                  <Pie
+                    options={{
+                      plugins: {
+                        legend: {
+                          display: true,
+                          onClick: () => {},
+                        },
+                      },
+                    }}
+                    data={getData(record)}
+                  />
+                </div>
               </div>
 
               {/* Food History Display Table */}
