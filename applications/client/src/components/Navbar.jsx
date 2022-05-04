@@ -59,7 +59,7 @@ function Navbar(props) {
               <ul>
                 <li>
                   <Link to="/FoodRecord" className="nav-link scrollto">
-                    <i className="bx bx-food-tag"></i> <span>Record</span>
+                    <i className="bx bx-food-tag"></i> <span>Meal Record</span>
                   </Link>
                 </li>
               </ul>
@@ -68,7 +68,7 @@ function Navbar(props) {
               <ul>
                 <li>
                   <Link to="/viewHistory" className="nav-link scrollto">
-                    <i className="bx bx-history"></i> <span>History</span>
+                    <i className="bx bx-history"></i> <span>Meal History</span>
                   </Link>
                 </li>
               </ul>
@@ -77,21 +77,22 @@ function Navbar(props) {
               <ul>
                 <li>
                   <Link to="/about" className="nav-link scrollto">
-                    <i className="bx bx-message-square-detail"></i>{" "}
-                    <span>About</span>
+                    <i className="bx bx-user"></i>{" "}
+                    <span>About Team</span>
                   </Link>
                 </li>
               </ul>
             </nav>
-            {/* <nav id="navbar" className="navbar nav-menu">
+            <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>
-                  <Link to="/faq" className="nav-link scrollto">
-                    <i className="bx bx-question-mark"></i> <span>FAQ</span>
+                  <Link to="/Contact" className="nav-link scrollto">
+                    <i className="bx bx-envelope"></i>{" "}
+                    <span>Contact Us</span>
                   </Link>
                 </li>
               </ul>
-            </nav> */}
+            </nav>
             <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>

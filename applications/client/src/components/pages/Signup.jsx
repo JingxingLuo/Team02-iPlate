@@ -104,7 +104,6 @@ import { Link } from "react-router-dom";
 
                     {/* submit button */}
                     <button type="button" className="btn btn-primary button" onClick={handleSubmit2}>
-                        {/*{props.page === "register" ? "Sign up!" : "Login"}*/}
                         {'Submit'}
                     </button>
                     </div>

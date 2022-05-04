@@ -17,36 +17,6 @@ import { getGroupTotalCalorie } from "../../food_nutrition";
 // global variable
 var globalVar = window.sessionStorage;
 
-// for pie, data should get from backend
-// export const data = {
-//   // red: rgba(255, 99, 132, 0.2) -> protein
-//   // purple: rgba(153, 102, 255, 0.2) -> fruit
-//   // yellow: rgba(255, 206, 86, 0.2) -> carb
-//   // green: rgba(75, 192, 192, 0.2) -> veggie
-
-//   labels: ["Protein", "Fruits", "Carb", "Veggies"],
-//   datasets: [
-//     {
-//       label: "Food Groups",
-//       //   data percentage should got from backend
-//       data: [12, 19, 3, 5],
-//       backgroundColor: [
-//         "rgba(255, 99, 132, 0.2)",
-//         "rgba(153, 102, 255, 0.2)",
-//         "rgba(255, 206, 86, 0.2)",
-//         "rgba(75, 192, 192, 0.2)",
-//       ],
-//       borderColor: [
-//         "rgba(255, 99, 132, 1)",
-//         "rgba(153, 102, 255, 1)",
-//         "rgba(255, 206, 86, 1)",
-//         "rgba(75, 192, 192, 1)",
-//       ],
-//       borderWidth: 1,
-//     },
-//   ],
-// };
-
 function History() {
   // State hooks
   const [date, setDate] = React.useState(new Date());
@@ -106,7 +76,6 @@ function History() {
     fetch("/api/FoodHistory", settings)
       .then((res) => res.json())
       .then((body) => {
-        // updateRecords(body.res1);
         console.log("body.res1: ", body.res1);
         return body.res1;
       })
@@ -140,18 +109,10 @@ function History() {
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     let data = {
-      // red: rgba(255, 99, 132, 0.2) -> protein
-      // purple: rgba(153, 102, 255, 0.2) -> fruit
-      // yellow: rgba(255, 206, 86, 0.2) -> carb
-      // green: rgba(75, 192, 192, 0.2) -> veggie
-
       labels: ["Protein", "Fruits", "Grains", "Veggies"],
       datasets: [
         {
           label: "Food Groups",
-          //   data percentage should got from backend
-          //   [protein, fruit, carb, veggie
-
           data: [
             protein_cal / total_cal,
             fruits_cal / total_cal,
@@ -230,17 +191,10 @@ function History() {
                     .then((res) => res.json())
                     .then((body) => {
                       updateRecords(body.res1);
-                      // console.log("body.res1: ", body.res1);
                     })
                     .catch((err) => {
-                      // alert(err);
                       alert ("There is no data recorded by user for this date!!");
-                      // window.location.href = "/FoodRecord";
                     });
-
-                  // getTotalCalorie(body);
-                  // let records = renderHistory();
-                  // console.log("inside onclick's records: ", records);
                 }}
               >
                 Search

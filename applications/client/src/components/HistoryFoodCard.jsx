@@ -32,7 +32,6 @@ function HistoryFoodCard(props) {
           </thead>
 
           {/* table body */}
-          {/* {console.log("breakfast: ", breakfast)} */}
           <tbody>{createFoodTable(props.meal_data)}</tbody>
         </table>
       </div>

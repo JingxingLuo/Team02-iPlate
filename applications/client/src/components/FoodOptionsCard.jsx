@@ -50,10 +50,6 @@ function FoodGroupCard(props) {
                               food,
                               amount
                             );
-                            // console.log("meal type: ", props.mealType);
-                            // console.log("foodGroupName: ", props.foodGroupName);
-                            // console.log("food name: ", food);
-                            // console.log("food amount: ", amount);
                           }
                         }}
                       >

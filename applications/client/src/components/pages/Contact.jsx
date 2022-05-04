@@ -1,8 +1,16 @@
 import React from "react";
+import Navbar from "../Navbar";
+
+const handleSubmit = () => {
+  alert("Message sent succesfully!! wait for our Response.");
+};
 
 function Contact() {
   return (
+    <div>
+      <Navbar />
     <div className="container" data-aos="fade-up">
+      
       <div className="section-title">
         <h2>Contact</h2>
       </div>
@@ -13,19 +21,19 @@ function Contact() {
             <div className="address">
               <i className="bi bi-geo-alt"></i>
               <h4>Location:</h4>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>San Francisco State University, 1600 Holloway Ave, San Francisco, CA 94132</p>
             </div>
 
             <div className="email">
               <i className="bi bi-envelope"></i>
               <h4>Email:</h4>
-              <p>info@example.com</p>
+              <p>info@iPlate.com</p>
             </div>
 
             <div className="phone">
               <i className="bi bi-phone"></i>
               <h4>Call:</h4>
-              <p>+1 5589 55488 55s</p>
+              <p>+1 (111) 111-1111</p>
             </div>
           </div>
         </div>
@@ -34,7 +42,6 @@ function Contact() {
           <form
             action="forms/contact.php"
             method="post"
-            // role="form"
             className="php-email-form"
           >
             <div className="row">
@@ -78,19 +85,15 @@ function Contact() {
                 required
               ></textarea>
             </div>
-            <div className="my-3">
-              <div className="loading">Loading</div>
-              <div className="error-message"></div>
-              <div className="sent-message">
-                Your message has been sent. Thank you!
-              </div>
-            </div>
             <div className="text-center">
-              <button type="submit">Send Message</button>
+            <button type="submit" className="btn btn-primary button" onClick={handleSubmit}>
+          Send Message
+        </button>
             </div>
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

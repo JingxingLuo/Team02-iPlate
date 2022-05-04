@@ -7,10 +7,6 @@ import Navbar from "./Navbar";
 
 export default class Home extends Component {
   render() {
-    // var globalVar = window.sessionStorage;
-    // var isSucceed = globalVar.getItem("isSucceed");
-    // var loggedname = globalVar.getItem("username");
-  
     return (
       <div>
         <Navbar />

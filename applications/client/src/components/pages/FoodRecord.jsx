@@ -90,18 +90,13 @@ const FoodRecord = (props) => {
     return foodGroupArray.findIndex((food) => food.name === foodName);
   }
 
-  // TODO need to validate the non-number amount input!!!!!
   function updateJSON(foodGroups, newFood, newFoodAmount) {
     if (newFoodAmount !== "") {
       setReturnFoods((prev) => {
-        // if newFood exist -> update amount
-        // if not -> push
         const foundFoodIndex = findFoodIndex(newFood, prev[foodGroups]);
         if (foundFoodIndex != -1) {
-          // console.log("Food Exist----------");
           prev[foodGroups][foundFoodIndex].amount = parseInt(newFoodAmount, 10);
         } else {
-          // console.log("Food Does Not Exist----------");
           prev[foodGroups].push({
             name: newFood,
             amount: parseInt(newFoodAmount, 10),
@@ -125,8 +120,6 @@ const FoodRecord = (props) => {
 
   function updateFoodGroup(event) {
     setFoodGroupLabel(event.target.textContent);
-    // document.getElementsByClassName("food-table-input").reset();
-    // console.log(document.getElementsByClassName("food-table-input").value);
   }
 
   useEffect(() => {
@@ -237,7 +230,6 @@ const FoodRecord = (props) => {
         </div>
         <div className="food-record-main">
           {/* Food cart */}
-          {/* <HistoryFoodCard meal_data={returnFoods} /> */}
           {Object.keys(returnFoods)
             .map((key) => returnFoods[key])
             .filter((foodArr) => foodArr.length > 0).length > 0 && (
@@ -259,7 +251,6 @@ const FoodRecord = (props) => {
               </table>
             </div>
           )}
-          {/* <AddedFoodCard foods={returnFoods} /> */}
           <FoodOptionsCard
             mealType={returnMealType}
             foodGroupName={foodGroupLabel}
@@ -304,27 +295,20 @@ const FoodRecord = (props) => {
                       },
                       body: JSON.stringify(body),
                     };
-                    // alert(body.name);
                     alert("Meal recorded succesfully");
                     console.log("record!");
                     fetch("/api/foodRecord", settings)
                       .then((res) => res.json())
                       .then((body) => {
-                        // alert(body.isSucceed);
-                        // alert(body.message);
                         if (body.isSucceed === true) {
-                          // globalVar.setItem("username", JSON.stringify(body.username));
                           globalVar.setItem(
                             "returnFoods",
                             JSON.stringify(body.returnFoods)
                           );
-                          //   alert("This is the branch");
                           globalVar.setItem(
                             "isSucceed",
                             JSON.stringify(body.isSucceed)
                           );
-                          //alert('!!')
-                          // window.location.href = "/FoodRecord";
                         } else {
                           alert(body.message);
                         }
@@ -336,7 +320,6 @@ const FoodRecord = (props) => {
                       });
                   }
                 }
-                // let calories = [300, 50, 400, 70];
               }
             >
               Record!
