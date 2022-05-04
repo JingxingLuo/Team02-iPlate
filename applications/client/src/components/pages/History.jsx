@@ -233,8 +233,9 @@ function History() {
                       // console.log("body.res1: ", body.res1);
                     })
                     .catch((err) => {
-                      alert(err);
-                      window.location.href = "/FoodRecord";
+                      // alert(err);
+                      alert ("There is no data recorded by user for this date!!");
+                      // window.location.href = "/FoodRecord";
                     });
 
                   // getTotalCalorie(body);
