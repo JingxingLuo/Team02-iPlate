@@ -9,8 +9,6 @@ import Navbar from "./Navbar";
 
 export default class Home extends Component {
   render() {
-<<<<<<< HEAD
-=======
 
     var globalVar = window.sessionStorage;
     var isSucceed = globalVar.getItem("isSucceed");
@@ -21,7 +19,6 @@ export default class Home extends Component {
         window.location.href = '/';
       }
   
->>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
     return (
       <div>
         <Navbar />

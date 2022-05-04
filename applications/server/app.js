@@ -249,17 +249,6 @@ app.post("/api/FoodRecord", (req, res, next) => {
               protein: [],
             },
           };
-<<<<<<< HEAD
-=======
-
-          // mealType
-          // name
-          // date
-          // veggie array
-          // fruits array
-          // grains
-          // protein
->>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
@@ -314,25 +303,15 @@ app.post("/api/FoodRecord", (req, res, next) => {
               }
               break;
           }
-<<<<<<< HEAD
-          db.collection("FoodHistory").insertOne(temp_object, (err, result) => {
-=======
 
-
-          // data -> breakfast -- > 4 different objects
 
           db.collection("foodHistory").insertOne(temp_object, (err, result) => {
->>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
             if (err) throw err;
             if (result) {
               console.log(result);
               console.log(
                 `User Data Inserted with name and date:${temp_object.name} and ${temp_object.date}`
               );
-<<<<<<< HEAD
-=======
-
->>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
             }
           });
           res.header("Access-Control-Allow-Headers", "*");
