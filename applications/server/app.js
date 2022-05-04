@@ -22,7 +22,7 @@ var db;
 
 MongoClient.connect(fact)
   .then((dbo) => {
-    return Promise.resolve(dbo.db("MyDatabase"));
+    return Promise.resolve(dbo.db("iPlate"));
   })
   .then((client) => {
     db = client;
@@ -36,22 +36,11 @@ app.post("/api/login", (req, res, next) => {
   var temp = req.body;
   let temp_string = [];
 
-  for (let [key, value] of Object.entries(temp)) {
-    temp_string.push(key);
-  }
+  let TargetUsername=`${req.body.username}`;
+  let TargetPassword=`${req.body.password}`;
 
-  let TargetUsername, TargetPassword;
 
-  for (let [key, value] of Object.entries(JSON.parse(temp_string))) {
-    if (key === "username") {
-      TargetUsername = value;
-    }
-    if (key === "password") {
-      TargetPassword = value;
-    }
-  }
-
-  db.collection("test").findOne(
+  db.collection("users").findOne(
     { name: `${TargetUsername}` },
     function (err, result) {
       if (err) throw err;
@@ -90,25 +79,12 @@ app.post("/api/signup", (req, res, next) => {
   var temp = req.body;
   let temp_string = [];
   console.log(temp);
-  for (let [key, value] of Object.entries(temp)) {
-    temp_string.push(key);
-  }
 
-  let TargetUsername, TargetPassword, Target_confirmpassword;
+  let TargetUsername=`${req.body.username}`
+  let TargetPassword=`${req.body.password}`
+  let Target_confirmpassword=`${req.body.confirmPassword}`
 
-  for (let [key, value] of Object.entries(JSON.parse(temp_string))) {
-    if (key === "username") {
-      TargetUsername = value;
-    }
-    if (key === "password") {
-      TargetPassword = value;
-    }
-    if (key === "confirmPassword") {
-      Target_confirmpassword = value;
-    }
-  }
-
-  if (TargetPassword != Target_confirmpassword) {
+  if (TargetPassword !== Target_confirmpassword) {
     res.header("Access-Control-Allow-Origin", "http://localhost:80");
     res.header("Access-Control-Allow-Headers", "*");
     res.status(200).send({
@@ -116,7 +92,7 @@ app.post("/api/signup", (req, res, next) => {
       message: "Password and confirmPassword does not match!!",
     });
   } else {
-    db.collection("test").findOne(
+    db.collection("users").findOne(
       { name: `${TargetUsername}` },
       function (err, result) {
         console.log(result);
@@ -131,7 +107,7 @@ app.post("/api/signup", (req, res, next) => {
         } else {
           console.log("API triggered");
           console.log(result);
-          db.collection("test").insertOne(
+          db.collection("users").insertOne(
             {
               name: `${TargetUsername}`,
               password: `${TargetPassword}`,
@@ -167,7 +143,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
     err("Invalid input");
   } else {
     console.log("Checkpoint 1");
-    db.collection("FoodHistory").findOne(
+    db.collection("foodHistory").findOne(
       {
         name: `${req.body.name}`,
         date: `${req.body.date}`,
@@ -231,7 +207,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
             else targetedMealDocument.protein.push(pro);
           }
 
-          db.collection("FoodHistory")
+          db.collection("foodHistory")
             .updateOne(
               {
                 name: `${req.body.name}`,
@@ -273,6 +249,17 @@ app.post("/api/FoodRecord", (req, res, next) => {
               protein: [],
             },
           };
+<<<<<<< HEAD
+=======
+
+          // mealType
+          // name
+          // date
+          // veggie array
+          // fruits array
+          // grains
+          // protein
+>>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
@@ -327,13 +314,25 @@ app.post("/api/FoodRecord", (req, res, next) => {
               }
               break;
           }
+<<<<<<< HEAD
           db.collection("FoodHistory").insertOne(temp_object, (err, result) => {
+=======
+
+
+          // data -> breakfast -- > 4 different objects
+
+          db.collection("foodHistory").insertOne(temp_object, (err, result) => {
+>>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
             if (err) throw err;
             if (result) {
               console.log(result);
               console.log(
                 `User Data Inserted with name and date:${temp_object.name} and ${temp_object.date}`
               );
+<<<<<<< HEAD
+=======
+
+>>>>>>> f76eb504b83efa8b62efb272e831acfd46b975d0
             }
           });
           res.header("Access-Control-Allow-Headers", "*");
@@ -352,7 +351,7 @@ app.post("/api/FoodHistory", (req, res, next) => {
   console.log(req.body);
   console.log("FoodHistory trigger");
 
-  db.collection("FoodHistory")
+  db.collection("foodHistory")
     .findOne({ name: `${req.body.name}`, date: `${req.body.date}` })
     .then((res1) => {
       console.log(res1);
@@ -366,3 +365,5 @@ app.post("/api/FoodHistory", (req, res, next) => {
       console.log(err);
     });
 });
+
+module.exports=app
