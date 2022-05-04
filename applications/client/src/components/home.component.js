@@ -5,11 +5,19 @@ import "swiper/swiper.min.css";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
+
+
 export default class Home extends Component {
   render() {
-    // var globalVar = window.sessionStorage;
-    // var isSucceed = globalVar.getItem("isSucceed");
-    // var loggedname = globalVar.getItem("username");
+
+    var globalVar = window.sessionStorage;
+    var isSucceed = globalVar.getItem("isSucceed");
+    var loggedname = globalVar.getItem("username");
+    loggedname = JSON.parse(loggedname);
+    if(!globalVar.isSucceed)
+      {
+        window.location.href = '/';
+      }
   
     return (
       <div>
@@ -26,7 +34,7 @@ export default class Home extends Component {
                         </div>
                         <div className="carousel-container">
                             <div className="carousel-content">
-                                <h2 className="animate__animated animate__fadeInDown">Welcome to <span>iPlate </span></h2>
+                                <h2 className="animate__animated animate__fadeInDown">Welcome to <span>iPlate, {loggedname} </span></h2>
                                 <p className="animate__animated animate__fadeInUp">Your Meal Recording App!! <br />Track the foods you love and live healthy!!</p>
                                 
                                 <div className="testimonials-slider" data-aos="fade-up" data-aos-delay="100" >
