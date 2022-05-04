@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 // npm component
 import DatePicker from "react-datepicker";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 // self-built component
@@ -136,6 +137,8 @@ function History() {
     console.log("Veggie: ", veggie_cal);
     const total_cal = protein_cal + fruits_cal + grains_cal + veggie_cal;
 
+    ChartJS.register(ArcElement, Tooltip, Legend);
+
     let data = {
       // red: rgba(255, 99, 132, 0.2) -> protein
       // purple: rgba(153, 102, 255, 0.2) -> fruit
@@ -249,26 +252,27 @@ function History() {
         {records.map((record, index) => {
           return (
             <div className="history-content">
-              {/* PIE chart */}
-              <div
-                style={{
-                  height: "500px",
-                  width: "500px",
-                  marginLeft: "0 auto",
-                }}
-              >
-                <h3>{record.mealType}</h3>
-                <Pie
-                  options={{
-                    plugins: {
-                      legend: {
-                        display: true,
-                        onClick: () => {},
-                      },
-                    },
+              <div className="pie-chart">
+                <h3 className="pie-meal-title">{record.mealType}</h3>
+                <div
+                  style={{
+                    height: "500px",
+                    width: "500px",
+                    marginLeft: "0 auto",
                   }}
-                  data={getData(record)}
-                />
+                >
+                  <Pie
+                    options={{
+                      plugins: {
+                        legend: {
+                          display: true,
+                          onClick: () => {},
+                        },
+                      },
+                    }}
+                    data={getData(record)}
+                  />
+                </div>
               </div>
 
               {/* Food History Display Table */}

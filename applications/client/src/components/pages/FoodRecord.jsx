@@ -9,7 +9,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import FoodOptionsCard from "../FoodOptionsCard";
 import Button from "react-bootstrap/esm/Button";
 import AddedFoodCard from "../AddedFoodCard";
-import HistoryFoodCard from "../HistoryFoodCard";
+import { HistoryFoodCard, createFoodTable } from "../HistoryFoodCard";
 
 Chart.register(ArcElement);
 
@@ -108,7 +108,7 @@ const FoodRecord = (props) => {
           });
         }
         console.log("prev: ", prev);
-        return prev;
+        return { ...prev };
       });
     }
   }
@@ -236,39 +236,29 @@ const FoodRecord = (props) => {
           </div>
         </div>
         <div className="food-record-main">
-          <div
-            style={{
-              height: "500px",
-              width: "500px",
-              marginLeft: "0 auto",
-            }}
-          >
-            {/* <Pie
-              data={data}
-              options={{
-                plugins: {
-                  legend: {
-                    display: true,
-                    onClick: () => {},
-                  },
-                },
-              }}
-              ref={chartRef}
-              onClick={(event, element) => {
-                const temp_index = getElementAtEvent(
-                  chartRef.current,
-                  event
-                )[0];
-                if (temp_index) {
-                  const index = temp_index.index;
-                  setFoodLabelIndex(index);
-                  setFoodGroupLabel(graphData[index].label);
-                }
-              }}
-            /> */}
-          </div>
           {/* Food cart */}
-          <HistoryFoodCard meal_data={returnFoods} />
+          {/* <HistoryFoodCard meal_data={returnFoods} /> */}
+          {Object.keys(returnFoods)
+            .map((key) => returnFoods[key])
+            .filter((foodArr) => foodArr.length > 0).length > 0 && (
+            <div className="food-options">
+              <nav
+                id="navbar-example2"
+                className="navbar navbar-light bg-light px-3"
+              >
+                <h3 className="navbar-brand">Food Cart</h3>
+              </nav>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Amount (g)</th>
+                  </tr>
+                </thead>
+                <tbody>{createFoodTable(returnFoods)}</tbody>
+              </table>
+            </div>
+          )}
           {/* <AddedFoodCard foods={returnFoods} /> */}
           <FoodOptionsCard
             mealType={returnMealType}
@@ -280,69 +270,78 @@ const FoodRecord = (props) => {
         </div>
 
         {/* record button */}
-        <Button
-          onClick={() => {
-            // calorie calculation
-            // 1. calculate veggies calorie
-
-            // let calories = [300, 50, 400, 70];
-            const body = {
-              name: JSON.parse(globalVar.getItem("username")),
-              date:
-                startDate.getFullYear() +
-                "-" +
-                (startDate.getMonth() + 1) +
-                "-" +
-                startDate.getDate(),
-              mealType: returnMealType,
-              veggie: returnFoods.Veggie,
-              fruits: returnFoods.Fruits,
-              protein: returnFoods.Protein,
-              grains: returnFoods.Grains,
-              // calories: calories;
-            };
-            console.log("body from record onclick: ", body);
-            const settings = {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(body),
-            };
-            // alert(body.name);
-            alert("Meal recorded succesfully");
-            console.log("record!");
-            fetch("/api/foodRecord", settings)
-              .then((res) => res.json())
-              .then((body) => {
-                // alert(body.isSucceed);
-                // alert(body.message);
-                if (body.isSucceed === true) {
-                  // globalVar.setItem("username", JSON.stringify(body.username));
-                  globalVar.setItem(
-                    "returnFoods",
-                    JSON.stringify(body.returnFoods)
-                  );
-                  //   alert("This is the branch");
-                  globalVar.setItem(
-                    "isSucceed",
-                    JSON.stringify(body.isSucceed)
-                  );
-                  //alert('!!')
-                  // window.location.href = "/FoodRecord";
-                } else {
-                  alert(body.message);
+        {returnMealType != "Meal" &&
+          Object.keys(returnFoods)
+            .map((key) => returnFoods[key])
+            .filter((foodArr) => foodArr.length > 0).length > 0 && (
+            <Button
+              onClick={
+                () => {
+                  // calorie calculation
+                  // 1. calculate veggies calorie
+                  if (returnMealType === "Meal")
+                    alert("Please choose a meal type first!");
+                  else {
+                    const body = {
+                      name: JSON.parse(globalVar.getItem("username")),
+                      date:
+                        startDate.getFullYear() +
+                        "-" +
+                        (startDate.getMonth() + 1) +
+                        "-" +
+                        startDate.getDate(),
+                      mealType: returnMealType,
+                      veggie: returnFoods.Veggie,
+                      fruits: returnFoods.Fruits,
+                      protein: returnFoods.Protein,
+                      grains: returnFoods.Grains,
+                    };
+                    console.log("body from record onclick: ", body);
+                    const settings = {
+                      method: "post",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(body),
+                    };
+                    // alert(body.name);
+                    alert("Meal recorded succesfully");
+                    console.log("record!");
+                    fetch("/api/foodRecord", settings)
+                      .then((res) => res.json())
+                      .then((body) => {
+                        // alert(body.isSucceed);
+                        // alert(body.message);
+                        if (body.isSucceed === true) {
+                          // globalVar.setItem("username", JSON.stringify(body.username));
+                          globalVar.setItem(
+                            "returnFoods",
+                            JSON.stringify(body.returnFoods)
+                          );
+                          //   alert("This is the branch");
+                          globalVar.setItem(
+                            "isSucceed",
+                            JSON.stringify(body.isSucceed)
+                          );
+                          //alert('!!')
+                          // window.location.href = "/FoodRecord";
+                        } else {
+                          alert(body.message);
+                        }
+                        console.log(body);
+                      })
+                      .catch((err) => {
+                        alert(err);
+                        window.location.href = "/FoodRecord";
+                      });
+                  }
                 }
-                console.log(body);
-              })
-              .catch((err) => {
-                alert(err);
-                window.location.href = "/FoodRecord";
-              });
-          }}
-        >
-          Record!
-        </Button>
+                // let calories = [300, 50, 400, 70];
+              }
+            >
+              Record!
+            </Button>
+          )}
       </div>
     </div>
   );

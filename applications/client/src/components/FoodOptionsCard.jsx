@@ -40,7 +40,7 @@ function FoodGroupCard(props) {
                     <td>
                       <Button
                         onClick={() => {
-                          if (props.mealType === "Choose your meal") {
+                          if (props.mealType === "Meal") {
                             console.log("Please choose a meal type!");
                             alert("Please choose a meal type!");
                           } else {
