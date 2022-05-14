@@ -17,7 +17,7 @@ import Jingxing from "./components/jingxing.component";
 import AungUser from "./components/akm.component";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
-import Contact from "./components/pages/Contact";
+import Contact from "./components/pages/Contact.component";
 import FoodRecord from "./components/pages/FoodRecord";
 import History from "./components/pages/History";
 

@@ -4,6 +4,7 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default class Home extends Component {
   render() {
@@ -22,7 +23,6 @@ export default class Home extends Component {
                     <div className="carousel-inner" role="listbox">
                         <div className="carousel-item active">
                         <div className="carousel-background">
-                            <img src="assets/img/slide/slide-1.jpg" alt="" />
                         </div>
                         <div className="carousel-container">
                             <div className="carousel-content">
@@ -72,6 +72,8 @@ export default class Home extends Component {
                 </div>
             </div>
         </section>
+
+        <Footer />
       </div>
     );
   }

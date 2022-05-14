@@ -83,15 +83,15 @@ function Navbar(props) {
                 </li>
               </ul>
             </nav>
-            {/* <nav id="navbar" className="navbar nav-menu">
+            <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>
-                  <Link to="/faq" className="nav-link scrollto">
-                    <i className="bx bx-question-mark"></i> <span>FAQ</span>
+                  <Link to="/Contact" className="nav-link scrollto">
+                    <i className="bx bx-envelope"></i> <span>Contact Us</span>
                   </Link>
                 </li>
               </ul>
-            </nav> */}
+            </nav>
             <nav id="navbar" className="navbar nav-menu">
               <ul>
                 <li>

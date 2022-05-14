@@ -7,6 +7,7 @@ import { Pie } from "react-chartjs-2";
 
 // self-built component
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import HistoryFoodCard from "../HistoryFoodCard";
 
 // bootstrap
@@ -16,36 +17,6 @@ import { getGroupTotalCalorie } from "../../food_nutrition";
 
 // global variable
 var globalVar = window.sessionStorage;
-
-// for pie, data should get from backend
-// export const data = {
-//   // red: rgba(255, 99, 132, 0.2) -> protein
-//   // purple: rgba(153, 102, 255, 0.2) -> fruit
-//   // yellow: rgba(255, 206, 86, 0.2) -> carb
-//   // green: rgba(75, 192, 192, 0.2) -> veggie
-
-//   labels: ["Protein", "Fruits", "Carb", "Veggies"],
-//   datasets: [
-//     {
-//       label: "Food Groups",
-//       //   data percentage should got from backend
-//       data: [12, 19, 3, 5],
-//       backgroundColor: [
-//         "rgba(255, 99, 132, 0.2)",
-//         "rgba(153, 102, 255, 0.2)",
-//         "rgba(255, 206, 86, 0.2)",
-//         "rgba(75, 192, 192, 0.2)",
-//       ],
-//       borderColor: [
-//         "rgba(255, 99, 132, 1)",
-//         "rgba(153, 102, 255, 1)",
-//         "rgba(255, 206, 86, 1)",
-//         "rgba(75, 192, 192, 1)",
-//       ],
-//       borderWidth: 1,
-//     },
-//   ],
-// };
 
 function History() {
   // State hooks
@@ -281,6 +252,8 @@ function History() {
           );
         })}
       </div>
+
+      <Footer />
     </div>
   );
 }
