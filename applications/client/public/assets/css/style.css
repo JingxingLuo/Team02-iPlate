@@ -1108,6 +1108,10 @@ section {
   font-size: 14px;
   text-align: center;
   padding: 30px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 #footer h3 {
   font-size: 36px;

@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
   const Signup =(props) => {
@@ -111,6 +112,8 @@ import { Link } from "react-router-dom";
                 </form>
                 
             </div>
+
+            <Footer />
         </div>
     );
 };
