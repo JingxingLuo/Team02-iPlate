@@ -87,12 +87,7 @@ function Navbar(props) {
               <ul>
                 <li>
                   <Link to="/Contact" className="nav-link scrollto">
-<<<<<<< HEAD
-                    <i className="bx bx-envelope"></i> <span>Contact Us</span>
-=======
-                    <i className="bx bx-envelope"></i>{" "}
-                    <span>Contact Us</span>
->>>>>>> 641f7cb521a31e222ffd84bac7189a13b0d982c0
+                  <i className="bx bx-envelope"></i> <span>Contact Us</span>
                   </Link>
                 </li>
               </ul>
