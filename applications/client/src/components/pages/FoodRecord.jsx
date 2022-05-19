@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Component, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Pie, getElementAtEvent, getDatasetAtEvent } from "react-chartjs-2";
@@ -326,6 +327,7 @@ const FoodRecord = (props) => {
             </Button>
           )}
       </div>
+      <Footer />
     </div>
   );
 };

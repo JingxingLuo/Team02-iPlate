@@ -7,6 +7,7 @@ import { Pie } from "react-chartjs-2";
 
 // self-built component
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import HistoryFoodCard from "../HistoryFoodCard";
 
 // bootstrap
@@ -236,6 +237,8 @@ function History() {
           );
         })}
       </div>
+
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default class About extends Component {
   render() {
@@ -268,6 +269,8 @@ export default class About extends Component {
             </div>
           </div>
         </section>
+
+        <Footer />
       </div>
     );
   }

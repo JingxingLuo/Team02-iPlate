@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
   const Login =(props) => {
@@ -97,6 +98,7 @@ import { Link } from "react-router-dom";
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 };
