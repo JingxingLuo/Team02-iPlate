@@ -3,7 +3,6 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
 var fact = "mongodb://0.0.0.0:27017/";
-// var bcrypt = require("bcrypt");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +15,6 @@ app.listen(8000, () => {
 app.post("/api/", (req, res, next) => {
   console.log(req.body);
   console.log("This is trigged!");
-  //res.header("Access-Control-Allow-Headers", "*");
   res.status(200).send("ASDASAADSDSD");
 });
 
@@ -24,7 +22,7 @@ var db;
 
 MongoClient.connect(fact)
   .then((dbo) => {
-    return Promise.resolve(dbo.db("MyDatabase"));
+    return Promise.resolve(dbo.db("iPlate"));
   })
   .then((client) => {
     db = client;
@@ -38,22 +36,11 @@ app.post("/api/login", (req, res, next) => {
   var temp = req.body;
   let temp_string = [];
 
-  for (let [key, value] of Object.entries(temp)) {
-    temp_string.push(key);
-  }
+  let TargetUsername=`${req.body.username}`;
+  let TargetPassword=`${req.body.password}`;
 
-  let TargetUsername, TargetPassword;
 
-  for (let [key, value] of Object.entries(JSON.parse(temp_string))) {
-    if (key === "username") {
-      TargetUsername = value;
-    }
-    if (key === "password") {
-      TargetPassword = value;
-    }
-  }
-
-  db.collection("test").findOne(
+  db.collection("users").findOne(
     { name: `${TargetUsername}` },
     function (err, result) {
       if (err) throw err;
@@ -92,25 +79,12 @@ app.post("/api/signup", (req, res, next) => {
   var temp = req.body;
   let temp_string = [];
   console.log(temp);
-  for (let [key, value] of Object.entries(temp)) {
-    temp_string.push(key);
-  }
 
-  let TargetUsername, TargetPassword, Target_confirmpassword;
+  let TargetUsername=`${req.body.username}`
+  let TargetPassword=`${req.body.password}`
+  let Target_confirmpassword=`${req.body.confirmPassword}`
 
-  for (let [key, value] of Object.entries(JSON.parse(temp_string))) {
-    if (key === "username") {
-      TargetUsername = value;
-    }
-    if (key === "password") {
-      TargetPassword = value;
-    }
-    if (key === "confirmPassword") {
-      Target_confirmpassword = value;
-    }
-  }
-
-  if (TargetPassword != Target_confirmpassword) {
+  if (TargetPassword !== Target_confirmpassword) {
     res.header("Access-Control-Allow-Origin", "http://localhost:80");
     res.header("Access-Control-Allow-Headers", "*");
     res.status(200).send({
@@ -118,7 +92,7 @@ app.post("/api/signup", (req, res, next) => {
       message: "Password and confirmPassword does not match!!",
     });
   } else {
-    db.collection("test").findOne(
+    db.collection("users").findOne(
       { name: `${TargetUsername}` },
       function (err, result) {
         console.log(result);
@@ -131,11 +105,9 @@ app.post("/api/signup", (req, res, next) => {
             .status(200)
             .send({ isSucceed: "false", message: "User already exists" });
         } else {
-          // hash the password
           console.log("API triggered");
-          // bcrypt.hash(TargetPassword, 10).then((result) => {
           console.log(result);
-          db.collection("test").insertOne(
+          db.collection("users").insertOne(
             {
               name: `${TargetUsername}`,
               password: `${TargetPassword}`,
@@ -158,7 +130,6 @@ app.post("/api/signup", (req, res, next) => {
               }
             }
           );
-          // });
         }
       }
     );
@@ -172,7 +143,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
     err("Invalid input");
   } else {
     console.log("Checkpoint 1");
-    db.collection("FoodHistory").findOne(
+    db.collection("foodHistory").findOne(
       {
         name: `${req.body.name}`,
         date: `${req.body.date}`,
@@ -195,7 +166,6 @@ app.post("/api/FoodRecord", (req, res, next) => {
           // for veggie
           for (let veg of veggie) {
             // if entry already exist -> update the entry amount
-            // console.log("Doing ", veg.name);
             const index = targetedMealDocument.veggie.findIndex(
               (item) => item.name === veg.name
             );
@@ -237,7 +207,7 @@ app.post("/api/FoodRecord", (req, res, next) => {
             else targetedMealDocument.protein.push(pro);
           }
 
-          db.collection("FoodHistory")
+          db.collection("foodHistory")
             .updateOne(
               {
                 name: `${req.body.name}`,
@@ -279,14 +249,6 @@ app.post("/api/FoodRecord", (req, res, next) => {
               protein: [],
             },
           };
-
-          // mealType
-          // name
-          // date
-          // veggie array
-          // fruits array
-          // grains
-          // protien
           let meal = req.body.mealType.toUpperCase();
           let temp = meal;
           console.log(meal);
@@ -341,36 +303,15 @@ app.post("/api/FoodRecord", (req, res, next) => {
               }
               break;
           }
-          // if (temp) {
-          //     console.log(temp_object.breakfast)
-          //     for (let i = 0; i < req.body.veggie.length; i++) {
-          //         temp_object.temp.veggie.push(req.body.veggie[i]);
-          //     }
-          //     for (let i = 0; i < req.body.fruits.length; i++) {
-          //         temp_object.temp.fruits.push(req.body.veggie[i]);
-          //     }
-          //     for (let i = 0; i < req.body.protein.length; i++) {
-          //         temp_object.temp.protein.push(req.body.veggie[i]);
-          //     }
-          //     for (let i = 0; i < req.body.grains.length; i++) {
-          //         temp_object.temp.grains.push(req.body.veggie[i]);
-          //     }
-          // }
 
-          // data -> breakfast -- > 4 different objects
 
-          // db.collection("test").findOne({ name: `${req.body.name}`,date:`${req.body.date}` }\
-          db.collection("FoodHistory").insertOne(temp_object, (err, result) => {
+          db.collection("foodHistory").insertOne(temp_object, (err, result) => {
             if (err) throw err;
             if (result) {
               console.log(result);
               console.log(
                 `User Data Inserted with name and date:${temp_object.name} and ${temp_object.date}`
               );
-
-              // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-              // res.header("Access-Control-Allow-Headers", "*");
-              // res.status(200).send({ "isSucceed": "true", "message": " Data Inserted up successfully!!" });
             }
           });
           res.header("Access-Control-Allow-Headers", "*");
@@ -379,7 +320,6 @@ app.post("/api/FoodRecord", (req, res, next) => {
             message: "Data Record Inserted successfully!!",
           });
 
-          /////////////////////////////////
         }
       }
     );
@@ -389,19 +329,8 @@ app.post("/api/FoodRecord", (req, res, next) => {
 app.post("/api/FoodHistory", (req, res, next) => {
   console.log(req.body);
   console.log("FoodHistory trigger");
-  // console.log(req.body.name)
-  // console.log(req.body.date)
 
-  //
-  // db.collection("FoodHistory").findOne(
-  //     {
-  //       name: `${req.body.name}`,
-  //       date: `${req.body.date}`,
-  //     },
-  //     function (err, result) {
-  //       if (err) throw new Error(err);
-
-  db.collection("FoodHistory")
+  db.collection("foodHistory")
     .findOne({ name: `${req.body.name}`, date: `${req.body.date}` })
     .then((res1) => {
       console.log(res1);
@@ -415,3 +344,5 @@ app.post("/api/FoodHistory", (req, res, next) => {
       console.log(err);
     });
 });
+
+module.exports=app

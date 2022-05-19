@@ -15,7 +15,6 @@ function AddedFoodCard(props) {
           </thead>
 
           {/* table body */}
-          {/* {console.log("breakfast: ", breakfast)} */}
           <tbody id="food-cart-tbody"></tbody>
         </table>
       </div>

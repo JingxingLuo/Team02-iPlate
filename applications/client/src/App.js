@@ -1,6 +1,5 @@
 import { Component } from "react";
 import "./App.css";
-// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

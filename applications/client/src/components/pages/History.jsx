@@ -77,7 +77,6 @@ function History() {
     fetch("/api/FoodHistory", settings)
       .then((res) => res.json())
       .then((body) => {
-        // updateRecords(body.res1);
         console.log("body.res1: ", body.res1);
         return body.res1;
       })
@@ -111,18 +110,10 @@ function History() {
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     let data = {
-      // red: rgba(255, 99, 132, 0.2) -> protein
-      // purple: rgba(153, 102, 255, 0.2) -> fruit
-      // yellow: rgba(255, 206, 86, 0.2) -> carb
-      // green: rgba(75, 192, 192, 0.2) -> veggie
-
       labels: ["Protein", "Fruits", "Grains", "Veggies"],
       datasets: [
         {
           label: "Food Groups",
-          //   data percentage should got from backend
-          //   [protein, fruit, carb, veggie
-
           data: [
             protein_cal / total_cal,
             fruits_cal / total_cal,
@@ -201,16 +192,10 @@ function History() {
                     .then((res) => res.json())
                     .then((body) => {
                       updateRecords(body.res1);
-                      // console.log("body.res1: ", body.res1);
                     })
                     .catch((err) => {
-                      alert(err);
-                      window.location.href = "/FoodRecord";
+                      alert ("There is no data recorded by user for this date!!");
                     });
-
-                  // getTotalCalorie(body);
-                  // let records = renderHistory();
-                  // console.log("inside onclick's records: ", records);
                 }}
               >
                 Search

@@ -8,10 +8,6 @@ import Footer from "./Footer";
 
 export default class About extends Component {
   render() {
-    // var globalVar = window.sessionStorage;
-    // var isSucceed = globalVar.getItem("isSucceed");
-    // var loggedname = globalVar.getItem("username");
-  
     return (
       <div>
         <Navbar />
