@@ -98,7 +98,7 @@ import { Link } from "react-router-dom";
                     </div>
                 </form>
             </div>
-            <Footer />
+
         </div>
     );
 };

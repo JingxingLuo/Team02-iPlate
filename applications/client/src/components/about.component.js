@@ -270,7 +270,7 @@ export default class About extends Component {
           </div>
         </section>
 
-        <Footer />
+
       </div>
     );
   }

@@ -112,7 +112,7 @@ import { Link } from "react-router-dom";
                 
             </div>
 
-            <Footer />
+
         </div>
     );
 };

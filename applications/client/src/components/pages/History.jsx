@@ -238,7 +238,7 @@ function History() {
         })}
       </div>
 
-      <Footer />
+
     </div>
   );
 }

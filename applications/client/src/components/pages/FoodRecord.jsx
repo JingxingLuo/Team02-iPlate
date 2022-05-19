@@ -327,7 +327,7 @@ const FoodRecord = (props) => {
             </Button>
           )}
       </div>
-      <Footer />
+
     </div>
   );
 };
